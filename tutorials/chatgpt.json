@@ -1,0 +1,33 @@
+{
+  "platform_id": "chatgpt",
+  "platform_label": "ChatGPT",
+  "intro_paragraph": "ChatGPT's custom GPTs are the most established consumer-tier agent platform. They support file grounding, configurable instructions, and shareable links that don't require the recipient to have a paid account. Builder access requires a ChatGPT Plus or Team subscription; sharing works for anyone with a free account.",
+  "anchor_screenshot": "assets/tutorials/chatgpt/entry-point.png",
+  "anchor_screenshot_alt": "Placeholder for ChatGPT's GPT builder entry point — to be replaced with a real screenshot.",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Find the agent creation entry point",
+      "body": "From chat.openai.com, click your profile in the top-right corner and choose \"My GPTs,\" then \"Create a GPT.\" You can also reach the builder from the side panel on the left by selecting \"Explore GPTs\" → \"Create.\" The two routes land in the same configuration screen."
+    },
+    {
+      "number": 2,
+      "title": "Fill in the creation form",
+      "body": "Switch to the Configure tab — the Create tab is conversational and slower for paste-driven setup. Paste Title into Name, Description into Description, Instructions into Instructions. Upload files for Knowledge under \"Knowledge\" (PDFs, docs, slides). Toggle Capabilities (Web Search, Code Interpreter, DALL-E) as the recipe specifies; leave them off if not needed. Use the preview pane on the right to test the agent immediately."
+    },
+    {
+      "number": 3,
+      "title": "Save and share your agent",
+      "body": "Click Save. Pick \"Anyone with the link\" for general sharing or \"Only me\" while you're still calibrating. The published GPT lives at a chat.openai.com/g/... URL; copy that link into your syllabus or LMS. Students don't need a paid account to use a shared GPT, but they do need a free OpenAI account."
+    }
+  ],
+  "field_mapping": [
+    {"recipe_field": "Title",          "platform_field": "Name"},
+    {"recipe_field": "Description",    "platform_field": "Description"},
+    {"recipe_field": "Instructions",   "platform_field": "Instructions"},
+    {"recipe_field": "Knowledge Base", "platform_field": "Knowledge"},
+    {"recipe_field": "Tools",          "platform_field": "Capabilities"}
+  ],
+  "footer_note": null,
+  "last_updated": null
+}

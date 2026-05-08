@@ -1,0 +1,27 @@
+{
+  "id": "concept-explainer-multiple-framings",
+  "number": "6.3",
+  "title": "The Concept Explainer With Multiple Framings",
+  "family_id": "examples_cases_content",
+  "tier": "medium",
+  "level": 3,
+  "description": "Explains a concept through the lens of multiple disciplines — for instance, \"explain risk\" with framings from Finance, Marketing, Real Estate, and Management — so faculty can pick the framing that fits or use the contrast as the teaching moment.",
+  "framing_paragraph": "This recipe defines The Concept Explainer With Multiple Framings, a teaching-focused agent that fits the use case in the description above. Use it when that description matches what you want the agent to do in your course. The agent works best when its Instructions field is calibrated against two or three representative prompts before you share the resulting agent with students or colleagues.",
+  "fields": {
+    "instructions": "[PLACEHOLDER — Instructions for this recipe will be authored and\ncalibrated in HANDOFF_02 and beyond. The intended length for the\nfinal field is 200-800 words depending on the recipe complexity.\nThis text exists to make the page render correctly during the\nskeleton phase.]",
+    "knowledge_base": "To be specified in calibration.",
+    "tools": "None for v1.",
+    "recommended_platforms": {
+      "best_on": [
+        "copilot"
+      ],
+      "comparative_phrase": "similar performance on Gemini, ChatGPT, and Claude",
+      "tradeoff_subline": "One-shot multi-perspective generation works across all four."
+    }
+  },
+  "related_recipes": [
+    "discipline-specific-example-generator",
+    "current-events-case-freshener",
+    "module-architect"
+  ]
+}

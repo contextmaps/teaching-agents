@@ -1,0 +1,27 @@
+{
+  "id": "course-format-converter",
+  "number": "4.1",
+  "title": "The Course Format Converter",
+  "family_id": "course_architecture",
+  "tier": "heavy",
+  "level": 2,
+  "description": "Converts a course from one format to another — in-person to async online, semester to compressed, lecture-heavy to flipped — preserving learning outcomes while restructuring delivery.",
+  "framing_paragraph": "This recipe defines The Course Format Converter, a teaching-focused agent that fits the use case in the description above. Use it when that description matches what you want the agent to do in your course. The agent works best when its Instructions field is calibrated against two or three representative prompts before you share the resulting agent with students or colleagues.",
+  "fields": {
+    "instructions": "[PLACEHOLDER — Instructions for this recipe will be authored and\ncalibrated in HANDOFF_02 and beyond. The intended length for the\nfinal field is 200-800 words depending on the recipe complexity.\nThis text exists to make the page render correctly during the\nskeleton phase.]",
+    "knowledge_base": "To be specified in calibration.",
+    "tools": "None for v1.",
+    "recommended_platforms": {
+      "best_on": [
+        "gemini"
+      ],
+      "comparative_phrase": "Claude or ChatGPT (Projects) for moderate-sized · decent on Copilot",
+      "tradeoff_subline": "Gemini's very large context window holds an entire semester's materials simultaneously. Claude and ChatGPT Projects work well for moderate courses. Copilot can do conversions on smaller courses but may lose fidelity on very large ones."
+    }
+  },
+  "related_recipes": [
+    "syllabus-modernizer",
+    "module-architect",
+    "reusable-course-assistant"
+  ]
+}

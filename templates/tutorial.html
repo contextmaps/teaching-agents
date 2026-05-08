@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}{{ tutorial.platform_label }} tutorial · {{ site.title }}{% endblock %}
+{% block wrap_modifier %} plib-wrap--narrow{% endblock %}
+
+{% block content %}
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="{{ root_prefix }}index.html">Home</a>
+    <span class="breadcrumb__sep" aria-hidden="true">›</span>
+    <a href="{{ root_prefix }}index.html#tutorials">Tutorials</a>
+    <span class="breadcrumb__sep" aria-hidden="true">›</span>
+    <span aria-current="page">{{ tutorial.platform_label }}</span>
+  </nav>
+
+  <header class="recipe-header">
+    <h1 class="recipe-header__title">Building agents in {{ tutorial.platform_label }}</h1>
+    <p class="recipe-header__description">{{ tutorial.intro_paragraph }}</p>
+  </header>
+
+  <div class="tutorial-banner" role="note">
+    Tutorial content under review — last updated dates pending.
+  </div>
+
+  <figure class="tutorial-anchor">
+    <img src="{{ root_prefix }}{{ tutorial.anchor_screenshot }}"
+         alt="{{ tutorial.anchor_screenshot_alt }}"
+         loading="lazy"
+         width="800" height="500">
+  </figure>
+
+  <div class="tutorial-steps">
+    {% for step in tutorial.steps %}
+      <section class="tutorial-step" aria-labelledby="step-{{ step.number }}">
+        <h2 class="tutorial-step__heading" id="step-{{ step.number }}">
+          <span class="tutorial-step__number" aria-hidden="true">{{ step.number }}</span>
+          <span>{{ step.title }}</span>
+        </h2>
+        <p class="tutorial-step__body">{{ step.body }}</p>
+      </section>
+    {% endfor %}
+  </div>
+
+  <section class="field-mapping" aria-labelledby="field-mapping-heading">
+    <table>
+      <caption class="sr-only" id="field-mapping-heading">{{ tutorial.platform_label }} field mapping</caption>
+      <thead>
+        <tr>
+          <th scope="col">Recipe field</th>
+          <th scope="col">{{ tutorial.platform_label }} field</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in tutorial.field_mapping %}
+          <tr>
+            <td>{{ row.recipe_field }}</td>
+            <td>{{ row.platform_field }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  {% if tutorial.footer_note %}
+    <aside class="tutorial-footer-note">{{ tutorial.footer_note }}</aside>
+  {% endif %}
+
+  <p class="field__platform-note" style="margin-top:32px;">
+    Last updated: {% if tutorial.last_updated %}{{ tutorial.last_updated }}{% else %}pending{% endif %}.
+  </p>
+{% endblock %}

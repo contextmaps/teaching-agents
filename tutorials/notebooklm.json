@@ -1,0 +1,33 @@
+{
+  "platform_id": "notebooklm",
+  "platform_label": "NotebookLM",
+  "intro_paragraph": "NotebookLM is not a peer to the four primary platforms in the agent-creation paradigm. It's a shareable grounded chat: upload sources, configure the chat behavior lightly, share a notebook link. Best for recipes where a faculty member wants to share grounded Q&A over uploaded materials without building a full agent. Two recipes in the catalog (Course FAQ Answerer and Reusable Course Assistant) reference NotebookLM as a lightweight alternative.",
+  "anchor_screenshot": "assets/tutorials/notebooklm/notebook-overview.png",
+  "anchor_screenshot_alt": "Placeholder for NotebookLM's notebook overview — to be replaced with a real screenshot.",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Create a notebook and add sources",
+      "body": "Sign in at notebooklm.google.com and click \"+ New notebook.\" Add sources from the left panel: PDFs, Google Docs, slides, or pasted text. NotebookLM grounds every answer in these sources, with citations back to specific passages. This is the recipe's Knowledge Base."
+    },
+    {
+      "number": 2,
+      "title": "Configure the chat behavior (lightly)",
+      "body": "Open notebook settings. NotebookLM does not expose a full system-prompt field the way Claude and ChatGPT do; what it offers is a shorter \"persona / tone\" hint and the ability to pin specific source documents as the primary grounding. Paste a condensed version of the recipe's Instructions into the persona field. Skip the Tools field — it's not applicable here."
+    },
+    {
+      "number": 3,
+      "title": "Share the notebook",
+      "body": "Use the Share button at the top right. Pick \"Anyone with the link\" or restrict to specific accounts. Recipients land in the same notebook chat with the same grounding. NotebookLM share links work across Google accounts; recipients don't need a paid tier."
+    }
+  ],
+  "field_mapping": [
+    {"recipe_field": "Title",          "platform_field": "Notebook name"},
+    {"recipe_field": "Description",    "platform_field": "Notebook description"},
+    {"recipe_field": "Instructions",   "platform_field": "Persona / tone (condensed)"},
+    {"recipe_field": "Knowledge Base", "platform_field": "Sources"},
+    {"recipe_field": "Tools",          "platform_field": "(not applicable)"}
+  ],
+  "footer_note": "If you came here from a recipe page, return to that recipe and consider whether NotebookLM's lighter configuration ceiling is the right trade-off. For recipes where the Instructions field is doing heavy lifting (Concept Tutor, Adaptive Practice Partner), Claude or ChatGPT is a better fit. NotebookLM shines when the value is in the source material itself.",
+  "last_updated": null
+}

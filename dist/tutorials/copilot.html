@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Microsoft Copilot tutorial · Pamplin AI Agent Recipes</title>
+  <meta name="description" content="Concrete agent designs for Pamplin faculty.">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script>
+    window.__SITE_CONFIG__ = {
+      formSubmissionUrl: "https://docs.google.com/forms/d/e/PLACEHOLDER/formResponse",
+      entryEventType:    "entry.PLACEHOLDER1",
+      entrySessionId:    "entry.PLACEHOLDER2",
+      entryTimestamp:    "entry.PLACEHOLDER3",
+      entryPayload:      "entry.PLACEHOLDER4",
+      pageType:          "tutorial",
+      recipeId:          null
+    };
+  </script>
+</head>
+<body>
+  <a class="plib-skip-link" href="#main">Skip to main content</a>
+
+  <header class="plib-page-header" role="banner">
+    <div class="plib-wrap plib-page-header__inner">
+      <div class="plib-page-header__title-row">
+        <h1 class="plib-page-header__title">
+          <a href="../index.html">Pamplin AI Agent Recipes</a>
+        </h1>
+        <p class="plib-page-header__tagline">Concrete agent designs for Pamplin faculty.</p>
+      </div>
+      <nav class="plib-page-header__nav" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#tutorials" aria-current="page">Tutorials</a>
+        <a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="plib-wrap plib-wrap--narrow">
+      
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="breadcrumb__sep" aria-hidden="true">›</span>
+    <a href="../index.html#tutorials">Tutorials</a>
+    <span class="breadcrumb__sep" aria-hidden="true">›</span>
+    <span aria-current="page">Microsoft Copilot</span>
+  </nav>
+
+  <header class="recipe-header">
+    <h1 class="recipe-header__title">Building agents in Microsoft Copilot</h1>
+    <p class="recipe-header__description">Microsoft Copilot Chat includes a built-in agent-creation flow that any VT faculty member can use with their institutional account. This tutorial covers the consumer-tier flow, not Copilot Studio. Expect a guided form, light-weight grounding, and a shareable link at the end.</p>
+  </header>
+
+  <div class="tutorial-banner" role="note">
+    Tutorial content under review — last updated dates pending.
+  </div>
+
+  <figure class="tutorial-anchor">
+    <img src="../assets/tutorials/copilot/entry-point.png"
+         alt="Placeholder for Copilot&#39;s agent creation entry point — to be replaced with a real screenshot."
+         loading="lazy"
+         width="800" height="500">
+  </figure>
+
+  <div class="tutorial-steps">
+    
+      <section class="tutorial-step" aria-labelledby="step-1">
+        <h2 class="tutorial-step__heading" id="step-1">
+          <span class="tutorial-step__number" aria-hidden="true">1</span>
+          <span>Find the agent creation entry point</span>
+        </h2>
+        <p class="tutorial-step__body">Sign in to Copilot at copilot.microsoft.com with your VT account. Look for the &#34;Create an agent&#34; or &#34;Agents&#34; entry on the left rail (the exact label has shifted over time; the icon is consistent). If you don&#39;t see it, check that you&#39;re in the chat experience, not Microsoft 365 Copilot search.</p>
+      </section>
+    
+      <section class="tutorial-step" aria-labelledby="step-2">
+        <h2 class="tutorial-step__heading" id="step-2">
+          <span class="tutorial-step__number" aria-hidden="true">2</span>
+          <span>Fill in the creation form</span>
+        </h2>
+        <p class="tutorial-step__body">Copilot will walk you through a guided form. Paste the recipe&#39;s Title into Name, Description into Description, Instructions into the Instructions / System message field. Knowledge sources go into the file upload section. Skip the Capabilities / Tools section unless your recipe specifies one. Save and preview as you go — Copilot lets you test the agent in a side panel before publishing.</p>
+      </section>
+    
+      <section class="tutorial-step" aria-labelledby="step-3">
+        <h2 class="tutorial-step__heading" id="step-3">
+          <span class="tutorial-step__number" aria-hidden="true">3</span>
+          <span>Save and share your agent</span>
+        </h2>
+        <p class="tutorial-step__body">Choose Publish, then pick the visibility level. &#34;Just me&#34; is the default; for a faculty-built agent you want to share with students, pick &#34;Shared with people I choose&#34; and add specific accounts or distribution lists. Copy the resulting link and paste it where students can find it (LMS, syllabus, course page).</p>
+      </section>
+    
+  </div>
+
+  <section class="field-mapping" aria-labelledby="field-mapping-heading">
+    <table>
+      <caption class="sr-only" id="field-mapping-heading">Microsoft Copilot field mapping</caption>
+      <thead>
+        <tr>
+          <th scope="col">Recipe field</th>
+          <th scope="col">Microsoft Copilot field</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+          <tr>
+            <td>Title</td>
+            <td>Name</td>
+          </tr>
+        
+          <tr>
+            <td>Description</td>
+            <td>Description</td>
+          </tr>
+        
+          <tr>
+            <td>Instructions</td>
+            <td>Instructions</td>
+          </tr>
+        
+          <tr>
+            <td>Knowledge Base</td>
+            <td>Knowledge / Files</td>
+          </tr>
+        
+          <tr>
+            <td>Tools</td>
+            <td>Capabilities</td>
+          </tr>
+        
+      </tbody>
+    </table>
+  </section>
+
+  
+    <aside class="tutorial-footer-note">Faculty wanting to build agents at the institutional tier — for instance, deploying to all students in a course with Pamplin IT support — should look at Copilot Studio. This is a separate, more advanced product that requires tenant access. Coordinate with Jim Dickhans (Pamplin IT) for that path.</aside>
+  
+
+  <p class="field__platform-note" style="margin-top:32px;">
+    Last updated: pending.
+  </p>
+
+    </div>
+  </main>
+
+  <div class="copy-announcement" aria-live="polite" aria-atomic="true" id="copy-announcement"></div>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="plib-wrap site-footer__row">
+      <p>Made for Pamplin College of Business.</p>
+      <p>Last updated 2026-05-08.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js" defer></script>
+</body>
+</html>

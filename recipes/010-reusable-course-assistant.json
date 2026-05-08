@@ -1,0 +1,27 @@
+{
+  "id": "reusable-course-assistant",
+  "number": "2.4",
+  "title": "The Reusable Course Assistant",
+  "family_id": "student_facing_always_on",
+  "tier": "heavy",
+  "level": 2,
+  "description": "Grounded on a faculty member's course materials — slides, readings, syllabus, past assignments — that students use throughout the semester for review and asynchronous study support.",
+  "framing_paragraph": "This recipe defines The Reusable Course Assistant, a teaching-focused agent that fits the use case in the description above. Use it when that description matches what you want the agent to do in your course. The agent works best when its Instructions field is calibrated against two or three representative prompts before you share the resulting agent with students or colleagues.",
+  "fields": {
+    "instructions": "[PLACEHOLDER — Instructions for this recipe will be authored and\ncalibrated in HANDOFF_02 and beyond. The intended length for the\nfinal field is 200-800 words depending on the recipe complexity.\nThis text exists to make the page render correctly during the\nskeleton phase.]",
+    "knowledge_base": "To be specified in calibration.",
+    "tools": "None for v1.",
+    "recommended_platforms": {
+      "best_on": [
+        "chatgpt"
+      ],
+      "comparative_phrase": "similar performance on Claude (Projects), strong knowledge-grounding on Gemini but with sharing constraints, advanced on Copilot Studio for faculty with tenant access",
+      "tradeoff_subline": "ChatGPT offers the most accessible deployment path for individual faculty. Gemini holds the largest grounding materials but with constrained sharing. NotebookLM is the lightweight alternative."
+    }
+  },
+  "related_recipes": [
+    "course-faq-answerer",
+    "concept-tutor-no-answers",
+    "adaptive-concept-practice-partner"
+  ]
+}

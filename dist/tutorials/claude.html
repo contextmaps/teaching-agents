@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Claude tutorial · Pamplin AI Agent Recipes</title>
+  <meta name="description" content="Concrete agent designs for Pamplin faculty.">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script>
+    window.__SITE_CONFIG__ = {
+      formSubmissionUrl: "https://docs.google.com/forms/d/e/PLACEHOLDER/formResponse",
+      entryEventType:    "entry.PLACEHOLDER1",
+      entrySessionId:    "entry.PLACEHOLDER2",
+      entryTimestamp:    "entry.PLACEHOLDER3",
+      entryPayload:      "entry.PLACEHOLDER4",
+      pageType:          "tutorial",
+      recipeId:          null
+    };
+  </script>
+</head>
+<body>
+  <a class="plib-skip-link" href="#main">Skip to main content</a>
+
+  <header class="plib-page-header" role="banner">
+    <div class="plib-wrap plib-page-header__inner">
+      <div class="plib-page-header__title-row">
+        <h1 class="plib-page-header__title">
+          <a href="../index.html">Pamplin AI Agent Recipes</a>
+        </h1>
+        <p class="plib-page-header__tagline">Concrete agent designs for Pamplin faculty.</p>
+      </div>
+      <nav class="plib-page-header__nav" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#tutorials" aria-current="page">Tutorials</a>
+        <a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="plib-wrap plib-wrap--narrow">
+      
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="breadcrumb__sep" aria-hidden="true">›</span>
+    <a href="../index.html#tutorials">Tutorials</a>
+    <span class="breadcrumb__sep" aria-hidden="true">›</span>
+    <span aria-current="page">Claude</span>
+  </nav>
+
+  <header class="recipe-header">
+    <h1 class="recipe-header__title">Building agents in Claude</h1>
+    <p class="recipe-header__description">Anthropic&#39;s Claude offers two paths for building shareable agents: Claude Projects (grounding + custom instructions, scoped to a workspace) and standalone shareable Claude.ai system prompts. Projects is the path most faculty want when a recipe specifies knowledge-base grounding. A Claude Pro or Team subscription is required for Projects; readers of a shared project need a Claude account.</p>
+  </header>
+
+  <div class="tutorial-banner" role="note">
+    Tutorial content under review — last updated dates pending.
+  </div>
+
+  <figure class="tutorial-anchor">
+    <img src="../assets/tutorials/claude/entry-point.png"
+         alt="Placeholder for Claude&#39;s Projects entry point — to be replaced with a real screenshot."
+         loading="lazy"
+         width="800" height="500">
+  </figure>
+
+  <div class="tutorial-steps">
+    
+      <section class="tutorial-step" aria-labelledby="step-1">
+        <h2 class="tutorial-step__heading" id="step-1">
+          <span class="tutorial-step__number" aria-hidden="true">1</span>
+          <span>Find the agent creation entry point</span>
+        </h2>
+        <p class="tutorial-step__body">From claude.ai, look at the left sidebar for &#34;Projects.&#34; Click &#34;+ Create Project.&#34; If you don&#39;t see Projects, your subscription tier doesn&#39;t include it — check your account settings or fall back to a system prompt in a regular conversation.</p>
+      </section>
+    
+      <section class="tutorial-step" aria-labelledby="step-2">
+        <h2 class="tutorial-step__heading" id="step-2">
+          <span class="tutorial-step__number" aria-hidden="true">2</span>
+          <span>Fill in the creation form</span>
+        </h2>
+        <p class="tutorial-step__body">Give the project a Name (the recipe&#39;s Title) and a one-line Description. Open the project settings panel and paste the recipe&#39;s Instructions into the &#34;Custom instructions&#34; or &#34;System prompt&#34; field. For Knowledge Base, drag and drop files into the project&#39;s knowledge area — Claude supports PDFs, text, and code files up to the per-project size limit. Claude does not have a separate &#34;Tools&#34; toggle in the Projects UI; tool-using behaviors come from how the instructions are written.</p>
+      </section>
+    
+      <section class="tutorial-step" aria-labelledby="step-3">
+        <h2 class="tutorial-step__heading" id="step-3">
+          <span class="tutorial-step__number" aria-hidden="true">3</span>
+          <span>Save and share your agent</span>
+        </h2>
+        <p class="tutorial-step__body">Open the project&#39;s share dialog from the top-right menu. Add specific email addresses or generate a shareable link. Members can converse with the project&#39;s grounded knowledge and instructions but typically can&#39;t edit the configuration. Copy the link into your syllabus or LMS.</p>
+      </section>
+    
+  </div>
+
+  <section class="field-mapping" aria-labelledby="field-mapping-heading">
+    <table>
+      <caption class="sr-only" id="field-mapping-heading">Claude field mapping</caption>
+      <thead>
+        <tr>
+          <th scope="col">Recipe field</th>
+          <th scope="col">Claude field</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+          <tr>
+            <td>Title</td>
+            <td>Project name</td>
+          </tr>
+        
+          <tr>
+            <td>Description</td>
+            <td>Description</td>
+          </tr>
+        
+          <tr>
+            <td>Instructions</td>
+            <td>Custom instructions</td>
+          </tr>
+        
+          <tr>
+            <td>Knowledge Base</td>
+            <td>Project knowledge</td>
+          </tr>
+        
+          <tr>
+            <td>Tools</td>
+            <td>(implicit in instructions)</td>
+          </tr>
+        
+      </tbody>
+    </table>
+  </section>
+
+  
+
+  <p class="field__platform-note" style="margin-top:32px;">
+    Last updated: pending.
+  </p>
+
+    </div>
+  </main>
+
+  <div class="copy-announcement" aria-live="polite" aria-atomic="true" id="copy-announcement"></div>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="plib-wrap site-footer__row">
+      <p>Made for Pamplin College of Business.</p>
+      <p>Last updated 2026-05-08.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js" defer></script>
+</body>
+</html>

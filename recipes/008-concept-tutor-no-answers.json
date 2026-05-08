@@ -1,0 +1,27 @@
+{
+  "id": "concept-tutor-no-answers",
+  "number": "2.2",
+  "title": "The Concept Tutor (No-Answers, Just Understanding)",
+  "family_id": "student_facing_always_on",
+  "tier": "medium",
+  "level": 2,
+  "description": "Helps students build conceptual intuition — analogies, walkthroughs, \"what does this mean\" reframings — explicitly without giving away problem solutions or doing graded work.",
+  "framing_paragraph": "This recipe defines The Concept Tutor (No-Answers, Just Understanding), a teaching-focused agent that fits the use case in the description above. Use it when that description matches what you want the agent to do in your course. The agent works best when its Instructions field is calibrated against two or three representative prompts before you share the resulting agent with students or colleagues.",
+  "fields": {
+    "instructions": "[PLACEHOLDER — Instructions for this recipe will be authored and\ncalibrated in HANDOFF_02 and beyond. The intended length for the\nfinal field is 200-800 words depending on the recipe complexity.\nThis text exists to make the page render correctly during the\nskeleton phase.]",
+    "knowledge_base": "To be specified in calibration.",
+    "tools": "None for v1.",
+    "recommended_platforms": {
+      "best_on": [
+        "claude"
+      ],
+      "comparative_phrase": "decent on ChatGPT, weaker on Copilot and Gemini",
+      "tradeoff_subline": "The spoiler-protection guardrail is the entire recipe. Claude is most consistent at staying in role under student rephrasing; ChatGPT also holds well. Copilot and Gemini have been observed to give in to persistent rephrasing. Faculty deploying for graded courses should test under student pressure."
+    }
+  },
+  "related_recipes": [
+    "adaptive-concept-practice-partner",
+    "reusable-course-assistant",
+    "course-faq-answerer"
+  ]
+}

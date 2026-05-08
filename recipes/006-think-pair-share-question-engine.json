@@ -1,0 +1,27 @@
+{
+  "id": "think-pair-share-question-engine",
+  "number": "1.6",
+  "title": "The Think-Pair-Share Question Engine",
+  "family_id": "in_class_activity_engines",
+  "tier": "light",
+  "level": 2,
+  "description": "Produces a sequence of think-pair-share prompts at varying cognitive levels for a 50-minute class session, paced to fit the lecture flow.",
+  "framing_paragraph": "This recipe defines The Think-Pair-Share Question Engine, a teaching-focused agent that fits the use case in the description above. Use it when that description matches what you want the agent to do in your course. The agent works best when its Instructions field is calibrated against two or three representative prompts before you share the resulting agent with students or colleagues.",
+  "fields": {
+    "instructions": "[PLACEHOLDER — Instructions for this recipe will be authored and\ncalibrated in HANDOFF_02 and beyond. The intended length for the\nfinal field is 200-800 words depending on the recipe complexity.\nThis text exists to make the page render correctly during the\nskeleton phase.]",
+    "knowledge_base": "To be specified in calibration.",
+    "tools": "None for v1.",
+    "recommended_platforms": {
+      "best_on": [
+        "copilot"
+      ],
+      "comparative_phrase": "similar performance on Gemini, ChatGPT, and Claude",
+      "tradeoff_subline": "The most platform-agnostic recipe in the catalog."
+    }
+  },
+  "related_recipes": [
+    "small-group-exercise-generator",
+    "discussion-question-generator",
+    "formative-check-generator"
+  ]
+}

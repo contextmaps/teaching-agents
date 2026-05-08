@@ -1,0 +1,27 @@
+{
+  "id": "course-ai-policy-drafter",
+  "number": "7.1",
+  "title": "The Course AI-Policy Drafter",
+  "family_id": "ai_policy",
+  "tier": "medium",
+  "level": 2,
+  "description": "Interviews the faculty member about their course, values, and concerns; produces draft AI-use policy language for the syllabus, assignment-level guidance, and student-facing disclosure norms, calibrated to the specific course.",
+  "framing_paragraph": "This recipe defines The Course AI-Policy Drafter, a teaching-focused agent that fits the use case in the description above. Use it when that description matches what you want the agent to do in your course. The agent works best when its Instructions field is calibrated against two or three representative prompts before you share the resulting agent with students or colleagues.",
+  "fields": {
+    "instructions": "[PLACEHOLDER — Instructions for this recipe will be authored and\ncalibrated in HANDOFF_02 and beyond. The intended length for the\nfinal field is 200-800 words depending on the recipe complexity.\nThis text exists to make the page render correctly during the\nskeleton phase.]",
+    "knowledge_base": "To be specified in calibration.",
+    "tools": "None for v1.",
+    "recommended_platforms": {
+      "best_on": [
+        "copilot"
+      ],
+      "comparative_phrase": "similar performance on Gemini, ChatGPT, and Claude",
+      "tradeoff_subline": "Copilot has a slight institutional advantage: faculty drafting AI-use policy may want it to align with VT IT guidance, and Copilot's institutional embedding helps surface that alignment."
+    }
+  },
+  "related_recipes": [
+    "syllabus-modernizer",
+    "module-architect",
+    "course-faq-answerer"
+  ]
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChatGPT tutorial · Pamplin AI Agent Recipes</title>
+  <meta name="description" content="Concrete agent designs for Pamplin faculty.">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script>
+    window.__SITE_CONFIG__ = {
+      formSubmissionUrl: "https://docs.google.com/forms/d/e/PLACEHOLDER/formResponse",
+      entryEventType:    "entry.PLACEHOLDER1",
+      entrySessionId:    "entry.PLACEHOLDER2",
+      entryTimestamp:    "entry.PLACEHOLDER3",
+      entryPayload:      "entry.PLACEHOLDER4",
+      pageType:          "tutorial",
+      recipeId:          null
+    };
+  </script>
+</head>
+<body>
+  <a class="plib-skip-link" href="#main">Skip to main content</a>
+
+  <header class="plib-page-header" role="banner">
+    <div class="plib-wrap plib-page-header__inner">
+      <div class="plib-page-header__title-row">
+        <h1 class="plib-page-header__title">
+          <a href="../index.html">Pamplin AI Agent Recipes</a>
+        </h1>
+        <p class="plib-page-header__tagline">Concrete agent designs for Pamplin faculty.</p>
+      </div>
+      <nav class="plib-page-header__nav" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#tutorials" aria-current="page">Tutorials</a>
+        <a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="plib-wrap plib-wrap--narrow">
+      
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="breadcrumb__sep" aria-hidden="true">›</span>
+    <a href="../index.html#tutorials">Tutorials</a>
+    <span class="breadcrumb__sep" aria-hidden="true">›</span>
+    <span aria-current="page">ChatGPT</span>
+  </nav>
+
+  <header class="recipe-header">
+    <h1 class="recipe-header__title">Building agents in ChatGPT</h1>
+    <p class="recipe-header__description">ChatGPT&#39;s custom GPTs are the most established consumer-tier agent platform. They support file grounding, configurable instructions, and shareable links that don&#39;t require the recipient to have a paid account. Builder access requires a ChatGPT Plus or Team subscription; sharing works for anyone with a free account.</p>
+  </header>
+
+  <div class="tutorial-banner" role="note">
+    Tutorial content under review — last updated dates pending.
+  </div>
+
+  <figure class="tutorial-anchor">
+    <img src="../assets/tutorials/chatgpt/entry-point.png"
+         alt="Placeholder for ChatGPT&#39;s GPT builder entry point — to be replaced with a real screenshot."
+         loading="lazy"
+         width="800" height="500">
+  </figure>
+
+  <div class="tutorial-steps">
+    
+      <section class="tutorial-step" aria-labelledby="step-1">
+        <h2 class="tutorial-step__heading" id="step-1">
+          <span class="tutorial-step__number" aria-hidden="true">1</span>
+          <span>Find the agent creation entry point</span>
+        </h2>
+        <p class="tutorial-step__body">From chat.openai.com, click your profile in the top-right corner and choose &#34;My GPTs,&#34; then &#34;Create a GPT.&#34; You can also reach the builder from the side panel on the left by selecting &#34;Explore GPTs&#34; → &#34;Create.&#34; The two routes land in the same configuration screen.</p>
+      </section>
+    
+      <section class="tutorial-step" aria-labelledby="step-2">
+        <h2 class="tutorial-step__heading" id="step-2">
+          <span class="tutorial-step__number" aria-hidden="true">2</span>
+          <span>Fill in the creation form</span>
+        </h2>
+        <p class="tutorial-step__body">Switch to the Configure tab — the Create tab is conversational and slower for paste-driven setup. Paste Title into Name, Description into Description, Instructions into Instructions. Upload files for Knowledge under &#34;Knowledge&#34; (PDFs, docs, slides). Toggle Capabilities (Web Search, Code Interpreter, DALL-E) as the recipe specifies; leave them off if not needed. Use the preview pane on the right to test the agent immediately.</p>
+      </section>
+    
+      <section class="tutorial-step" aria-labelledby="step-3">
+        <h2 class="tutorial-step__heading" id="step-3">
+          <span class="tutorial-step__number" aria-hidden="true">3</span>
+          <span>Save and share your agent</span>
+        </h2>
+        <p class="tutorial-step__body">Click Save. Pick &#34;Anyone with the link&#34; for general sharing or &#34;Only me&#34; while you&#39;re still calibrating. The published GPT lives at a chat.openai.com/g/... URL; copy that link into your syllabus or LMS. Students don&#39;t need a paid account to use a shared GPT, but they do need a free OpenAI account.</p>
+      </section>
+    
+  </div>
+
+  <section class="field-mapping" aria-labelledby="field-mapping-heading">
+    <table>
+      <caption class="sr-only" id="field-mapping-heading">ChatGPT field mapping</caption>
+      <thead>
+        <tr>
+          <th scope="col">Recipe field</th>
+          <th scope="col">ChatGPT field</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+          <tr>
+            <td>Title</td>
+            <td>Name</td>
+          </tr>
+        
+          <tr>
+            <td>Description</td>
+            <td>Description</td>
+          </tr>
+        
+          <tr>
+            <td>Instructions</td>
+            <td>Instructions</td>
+          </tr>
+        
+          <tr>
+            <td>Knowledge Base</td>
+            <td>Knowledge</td>
+          </tr>
+        
+          <tr>
+            <td>Tools</td>
+            <td>Capabilities</td>
+          </tr>
+        
+      </tbody>
+    </table>
+  </section>
+
+  
+
+  <p class="field__platform-note" style="margin-top:32px;">
+    Last updated: pending.
+  </p>
+
+    </div>
+  </main>
+
+  <div class="copy-announcement" aria-live="polite" aria-atomic="true" id="copy-announcement"></div>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="plib-wrap site-footer__row">
+      <p>Made for Pamplin College of Business.</p>
+      <p>Last updated 2026-05-08.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js" defer></script>
+</body>
+</html>

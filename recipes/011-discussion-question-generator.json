@@ -1,0 +1,27 @@
+{
+  "id": "discussion-question-generator",
+  "number": "3.1",
+  "title": "The Discussion Question Generator",
+  "family_id": "discussion_case_method",
+  "tier": "light",
+  "level": 2,
+  "description": "Takes a reading and produces a tiered set of discussion questions: opening, probing, application, meta-questions about the reading itself.",
+  "framing_paragraph": "This recipe defines The Discussion Question Generator, a teaching-focused agent that fits the use case in the description above. Use it when that description matches what you want the agent to do in your course. The agent works best when its Instructions field is calibrated against two or three representative prompts before you share the resulting agent with students or colleagues.",
+  "fields": {
+    "instructions": "[PLACEHOLDER — Instructions for this recipe will be authored and\ncalibrated in HANDOFF_02 and beyond. The intended length for the\nfinal field is 200-800 words depending on the recipe complexity.\nThis text exists to make the page render correctly during the\nskeleton phase.]",
+    "knowledge_base": "To be specified in calibration.",
+    "tools": "None for v1.",
+    "recommended_platforms": {
+      "best_on": [
+        "copilot"
+      ],
+      "comparative_phrase": "similar performance on Gemini, ChatGPT, and Claude",
+      "tradeoff_subline": "Among the most beginner-friendly recipes."
+    }
+  },
+  "related_recipes": [
+    "socratic-case-method-facilitator",
+    "case-discussion-debrief-synthesizer",
+    "think-pair-share-question-engine"
+  ]
+}

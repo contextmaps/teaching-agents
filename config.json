@@ -1,0 +1,45 @@
+{
+  "site": {
+    "title": "Pamplin AI Agent Recipes",
+    "tagline": "Concrete agent designs for Pamplin faculty.",
+    "base_url": "https://contextmaps.github.io/teaching-agents/",
+    "iframe_compatible": true,
+    "footer_last_updated": "2026-05-08"
+  },
+  "families": [
+    {"id": "in_class_activity_engines",   "label": "In-class activity engines",            "order": 1},
+    {"id": "student_facing_always_on",    "label": "Student-facing always-on agents",      "order": 2},
+    {"id": "discussion_case_method",      "label": "Discussion and case-method",           "order": 3},
+    {"id": "course_architecture",         "label": "Course architecture and conversion",   "order": 4},
+    {"id": "assessment_feedback",         "label": "Assessment and feedback",              "order": 5},
+    {"id": "examples_cases_content",      "label": "Examples, cases, and content",         "order": 6},
+    {"id": "ai_policy",                   "label": "AI-policy",                            "order": 7}
+  ],
+  "platforms": [
+    {"id": "copilot",  "label": "Microsoft Copilot", "tutorial_path": "tutorials/copilot.html"},
+    {"id": "chatgpt",  "label": "ChatGPT",           "tutorial_path": "tutorials/chatgpt.html"},
+    {"id": "claude",   "label": "Claude",            "tutorial_path": "tutorials/claude.html"},
+    {"id": "gemini",   "label": "Google Gemini",     "tutorial_path": "tutorials/gemini.html"}
+  ],
+  "tutorials": {
+    "last_updated": {
+      "copilot": null,
+      "chatgpt": null,
+      "claude": null,
+      "gemini": null,
+      "notebooklm": null
+    }
+  },
+  "form": {
+    "submission_url": "https://docs.google.com/forms/d/e/PLACEHOLDER/formResponse",
+    "entry_event_type": "entry.PLACEHOLDER1",
+    "entry_session_id": "entry.PLACEHOLDER2",
+    "entry_timestamp": "entry.PLACEHOLDER3",
+    "entry_payload": "entry.PLACEHOLDER4",
+    "_note": "Placeholder values. Replace via FORM_SETUP_GUIDE.md once Onur creates the Google Form."
+  },
+  "content_state": {
+    "recipe_instructions_drafted": false,
+    "tutorial_content_verified": false
+  }
+}

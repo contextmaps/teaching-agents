@@ -1,0 +1,33 @@
+{
+  "platform_id": "copilot",
+  "platform_label": "Microsoft Copilot",
+  "intro_paragraph": "Microsoft Copilot Chat includes a built-in agent-creation flow that any VT faculty member can use with their institutional account. This tutorial covers the consumer-tier flow, not Copilot Studio. Expect a guided form, light-weight grounding, and a shareable link at the end.",
+  "anchor_screenshot": "assets/tutorials/copilot/entry-point.png",
+  "anchor_screenshot_alt": "Placeholder for Copilot's agent creation entry point — to be replaced with a real screenshot.",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Find the agent creation entry point",
+      "body": "Sign in to Copilot at copilot.microsoft.com with your VT account. Look for the \"Create an agent\" or \"Agents\" entry on the left rail (the exact label has shifted over time; the icon is consistent). If you don't see it, check that you're in the chat experience, not Microsoft 365 Copilot search."
+    },
+    {
+      "number": 2,
+      "title": "Fill in the creation form",
+      "body": "Copilot will walk you through a guided form. Paste the recipe's Title into Name, Description into Description, Instructions into the Instructions / System message field. Knowledge sources go into the file upload section. Skip the Capabilities / Tools section unless your recipe specifies one. Save and preview as you go — Copilot lets you test the agent in a side panel before publishing."
+    },
+    {
+      "number": 3,
+      "title": "Save and share your agent",
+      "body": "Choose Publish, then pick the visibility level. \"Just me\" is the default; for a faculty-built agent you want to share with students, pick \"Shared with people I choose\" and add specific accounts or distribution lists. Copy the resulting link and paste it where students can find it (LMS, syllabus, course page)."
+    }
+  ],
+  "field_mapping": [
+    {"recipe_field": "Title",          "platform_field": "Name"},
+    {"recipe_field": "Description",    "platform_field": "Description"},
+    {"recipe_field": "Instructions",   "platform_field": "Instructions"},
+    {"recipe_field": "Knowledge Base", "platform_field": "Knowledge / Files"},
+    {"recipe_field": "Tools",          "platform_field": "Capabilities"}
+  ],
+  "footer_note": "Faculty wanting to build agents at the institutional tier — for instance, deploying to all students in a course with Pamplin IT support — should look at Copilot Studio. This is a separate, more advanced product that requires tenant access. Coordinate with Jim Dickhans (Pamplin IT) for that path.",
+  "last_updated": null
+}

@@ -1,0 +1,27 @@
+{
+  "id": "adaptive-concept-practice-partner",
+  "number": "2.3",
+  "title": "The Adaptive Concept-Practice Partner",
+  "family_id": "student_facing_always_on",
+  "tier": "heavy",
+  "level": 2,
+  "description": "Asks students conceptual questions, listens to their answers, adjusts follow-ups based on what the student understood — a Socratic practice partner students use before exams.",
+  "framing_paragraph": "This recipe defines The Adaptive Concept-Practice Partner, a teaching-focused agent that fits the use case in the description above. Use it when that description matches what you want the agent to do in your course. The agent works best when its Instructions field is calibrated against two or three representative prompts before you share the resulting agent with students or colleagues.",
+  "fields": {
+    "instructions": "[PLACEHOLDER — Instructions for this recipe will be authored and\ncalibrated in HANDOFF_02 and beyond. The intended length for the\nfinal field is 200-800 words depending on the recipe complexity.\nThis text exists to make the page render correctly during the\nskeleton phase.]",
+    "knowledge_base": "To be specified in calibration.",
+    "tools": "None for v1.",
+    "recommended_platforms": {
+      "best_on": [
+        "claude"
+      ],
+      "comparative_phrase": "decent on ChatGPT, weaker on Copilot and Gemini",
+      "tradeoff_subline": "Adaptive Socratic questioning is dialogue-quality-sensitive. Faculty wanting visual-avatar versions need a separate platform like HeyGen, outside this catalog's scope."
+    }
+  },
+  "related_recipes": [
+    "concept-tutor-no-answers",
+    "reusable-course-assistant",
+    "course-faq-answerer"
+  ]
+}

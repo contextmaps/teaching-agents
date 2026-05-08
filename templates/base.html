@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ site.title }}{% endblock %}</title>
+  <meta name="description" content="{{ site.tagline }}">
+  <link rel="stylesheet" href="{{ root_prefix }}assets/css/styles.css">
+  <script>
+    window.__SITE_CONFIG__ = {
+      formSubmissionUrl: {{ form.submission_url | tojson }},
+      entryEventType:    {{ form.entry_event_type | tojson }},
+      entrySessionId:    {{ form.entry_session_id | tojson }},
+      entryTimestamp:    {{ form.entry_timestamp | tojson }},
+      entryPayload:      {{ form.entry_payload | tojson }},
+      pageType:          {{ page.type | tojson }},
+      recipeId:          {{ (page.recipe_id if page.recipe_id else None) | tojson }}
+    };
+  </script>
+</head>
+<body>
+  <a class="plib-skip-link" href="#main">Skip to main content</a>
+
+  <header class="plib-page-header" role="banner">
+    <div class="plib-wrap plib-page-header__inner">
+      <div class="plib-page-header__title-row">
+        <h1 class="plib-page-header__title">
+          <a href="{{ root_prefix }}index.html">{{ site.title }}</a>
+        </h1>
+        <p class="plib-page-header__tagline">{{ site.tagline }}</p>
+      </div>
+      <nav class="plib-page-header__nav" aria-label="Primary">
+        <a href="{{ root_prefix }}index.html"{% if page.type == 'catalog' %} aria-current="page"{% endif %}>Home</a>
+        <a href="{{ root_prefix }}index.html#tutorials"{% if page.type in ('tutorial','notebooklm') %} aria-current="page"{% endif %}>Tutorials</a>
+        <a href="{{ root_prefix }}about.html"{% if page.type == 'about' %} aria-current="page"{% endif %}>About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="plib-wrap{% block wrap_modifier %}{% endblock %}">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <div class="copy-announcement" aria-live="polite" aria-atomic="true" id="copy-announcement"></div>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="plib-wrap site-footer__row">
+      <p>Made for Pamplin College of Business.</p>
+      <p>Last updated {{ site.footer_last_updated }}.</p>
+    </div>
+  </footer>
+
+  <script src="{{ root_prefix }}assets/js/site.js" defer></script>
+</body>
+</html>

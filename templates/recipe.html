@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% block title %}{{ recipe.title }} · {{ site.title }}{% endblock %}
+{% block wrap_modifier %} plib-wrap--narrow{% endblock %}
+
+{% block content %}
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="{{ root_prefix }}index.html">Home</a>
+    <span class="breadcrumb__sep" aria-hidden="true">›</span>
+    <a href="{{ root_prefix }}index.html#family-{{ recipe.family_id }}">{{ family_label }}</a>
+    <span class="breadcrumb__sep" aria-hidden="true">›</span>
+    <span aria-current="page">{{ recipe.title }}</span>
+  </nav>
+
+  <header class="recipe-header">
+    <span class="recipe-header__number">Recipe {{ recipe.number }}</span>
+    <h1 class="recipe-header__title">{{ recipe.title }}</h1>
+    <p class="recipe-header__description">{{ recipe.description }}</p>
+    <div class="recipe-header__meta">
+      <span class="tier-badge tier-badge--{{ recipe.tier }}">{{ recipe.tier | capitalize }}</span>
+      <span class="family-pill">{{ family_label }}</span>
+      <span class="level-badge">Level {{ recipe.level }}</span>
+    </div>
+  </header>
+
+  <p class="framing-paragraph">{{ recipe.framing_paragraph }}</p>
+
+  <div class="draft-banner" role="note">
+    <span class="draft-banner__label">Draft</span>
+    <span>This recipe's Instructions are still being authored. The page structure is final; the text will be filled in soon.</span>
+  </div>
+
+  <div class="field-stack">
+
+    {# Title #}
+    <section class="field" aria-labelledby="field-title">
+      <span class="field__label" id="field-title">Title</span>
+      <div class="field__card">
+        <div class="field__card-header">
+          <p class="field__content" id="field-title-text">{{ recipe.title }}</p>
+          <button class="plib-copy-btn"
+                  type="button"
+                  data-copy-target="#field-title-text"
+                  data-recipe-id="{{ recipe.id }}"
+                  data-field-name="title"
+                  aria-label="Copy Title">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    {# Description #}
+    <section class="field" aria-labelledby="field-description">
+      <span class="field__label" id="field-description">Description</span>
+      <div class="field__card">
+        <div class="field__card-header">
+          <p class="field__content" id="field-description-text">{{ recipe.description }}</p>
+          <button class="plib-copy-btn"
+                  type="button"
+                  data-copy-target="#field-description-text"
+                  data-recipe-id="{{ recipe.id }}"
+                  data-field-name="description"
+                  aria-label="Copy Description">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    {# Instructions #}
+    <section class="field" aria-labelledby="field-instructions">
+      <span class="field__label" id="field-instructions">Instructions</span>
+      <div class="field__card">
+        <div class="field__card-header">
+          <pre class="field__content field__content--mono" id="field-instructions-text">{{ recipe.fields.instructions }}</pre>
+          <button class="plib-copy-btn"
+                  type="button"
+                  data-copy-target="#field-instructions-text"
+                  data-recipe-id="{{ recipe.id }}"
+                  data-field-name="instructions"
+                  aria-label="Copy Instructions">Copy</button>
+        </div>
+        <p class="field__platform-note">Compatible with Copilot, ChatGPT, Claude, and Gemini.</p>
+      </div>
+    </section>
+
+    {# Knowledge Base #}
+    {% if recipe.fields.knowledge_base %}
+    <section class="field" aria-labelledby="field-knowledge-base">
+      <span class="field__label" id="field-knowledge-base">Knowledge Base</span>
+      <div class="field__card">
+        <div class="field__card-header">
+          <p class="field__content" id="field-knowledge-base-text">{{ recipe.fields.knowledge_base }}</p>
+          <button class="plib-copy-btn"
+                  type="button"
+                  data-copy-target="#field-knowledge-base-text"
+                  data-recipe-id="{{ recipe.id }}"
+                  data-field-name="knowledge_base"
+                  aria-label="Copy Knowledge Base">Copy</button>
+        </div>
+        <p class="field__platform-note">All four platforms support file uploads in their agent-creation flow, with different size limits.</p>
+      </div>
+    </section>
+    {% endif %}
+
+    {# Tools #}
+    {% if recipe.fields.tools %}
+    <section class="field" aria-labelledby="field-tools">
+      <span class="field__label" id="field-tools">Tools</span>
+      <div class="field__card">
+        <div class="field__card-header">
+          <p class="field__content" id="field-tools-text">{{ recipe.fields.tools }}</p>
+          <button class="plib-copy-btn"
+                  type="button"
+                  data-copy-target="#field-tools-text"
+                  data-recipe-id="{{ recipe.id }}"
+                  data-field-name="tools"
+                  aria-label="Copy Tools">Copy</button>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    {# Recommended platforms (no copy) #}
+    <section class="field" aria-labelledby="field-recommended">
+      <span class="field__label" id="field-recommended">Recommended Platforms</span>
+      <div class="field__card">
+        <p class="recommended-platforms__badge">
+          Best on {{ best_on_label(recipe.fields.recommended_platforms.best_on) }}
+          {% if recipe.fields.recommended_platforms.comparative_phrase %} · <span style="font-weight:400">{{ recipe.fields.recommended_platforms.comparative_phrase }}</span>{% endif %}
+        </p>
+        <p class="recommended-platforms__tradeoff">{{ recipe.fields.recommended_platforms.tradeoff_subline }}</p>
+      </div>
+    </section>
+
+  </div>
+
+  <section class="how-to-use" aria-labelledby="how-to-use-heading">
+    <h2 id="how-to-use-heading">How to use this recipe</h2>
+    <p>Open your preferred platform's agent-creation UI in a separate tab. Paste each field above into the corresponding form input on the platform's side. The Tutorial section walks through the UI for each platform if you haven't built an agent before — see the <a href="{{ root_prefix }}index.html#tutorials">tutorials list</a>. The recipe page stays open as your reference; the workflow is recipe-in-one-tab, platform-in-another, click-paste-click-paste.</p>
+  </section>
+
+  {% if related|length > 0 %}
+  <section class="related-recipes" aria-labelledby="related-heading">
+    <h2 id="related-heading">Related recipes in this family</h2>
+    <div class="related-recipes__grid">
+      {% for r in related %}
+        <a class="recipe-card" href="{{ r.file_slug }}.html">
+          <span class="recipe-card__number">Recipe {{ r.number }}</span>
+          <h3 class="recipe-card__title">{{ r.title }}</h3>
+          <p class="recipe-card__description">{{ r.description }}</p>
+          <div class="recipe-card__meta">
+            <span class="tier-badge tier-badge--{{ r.tier }}">{{ r.tier | capitalize }}</span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+{% endblock %}

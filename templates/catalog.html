@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ site.title }}{% endblock %}
+
+{% block content %}
+  <p class="intro-block">{{ site_content.site_intro }}</p>
+
+  {% for family in families %}
+    {% set fam_recipes = recipes_by_family[family.id] %}
+    {% if fam_recipes %}
+      <section class="family-section" aria-labelledby="family-{{ family.id }}">
+        <h2 class="family-section__heading" id="family-{{ family.id }}">{{ family.label }}</h2>
+        {% if site_content.family_descriptions[family.id] is defined %}
+          <p class="family-section__description">{{ site_content.family_descriptions[family.id] }}</p>
+        {% endif %}
+        <div class="recipe-grid">
+          {% for r in fam_recipes %}
+            <a class="recipe-card" href="{{ root_prefix }}recipes/{{ r.file_slug }}.html">
+              <span class="recipe-card__number">Recipe {{ r.number }}</span>
+              <h3 class="recipe-card__title">{{ r.title }}</h3>
+              <p class="recipe-card__description">{{ r.description }}</p>
+              <div class="recipe-card__meta">
+                <span class="tier-badge tier-badge--{{ r.tier }}">{{ r.tier | capitalize }}</span>
+                <span class="platform-badge">Best on {{ best_on_label(r.fields.recommended_platforms.best_on) }}</span>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+  {% endfor %}
+
+  <section class="tutorial-promo" id="tutorials" aria-labelledby="tutorial-promo-heading">
+    <h2 class="tutorial-promo__intro" id="tutorial-promo-heading">{{ site_content.tutorial_section_intro }}</h2>
+    <p class="family-section__description">Each tutorial walks through one platform's agent-creation UI: where to start, what each field maps to, how to share the result. The NotebookLM appendix covers a lightweight grounded-chat alternative.</p>
+    <ul class="tutorial-promo__list">
+      {% for p in platforms %}
+        <li><a href="{{ root_prefix }}{{ p.tutorial_path }}">{{ p.label }}</a></li>
+      {% endfor %}
+      <li><a href="{{ root_prefix }}tutorials/notebooklm.html">NotebookLM (appendix)</a></li>
+    </ul>
+  </section>
+{% endblock %}
