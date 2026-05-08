@@ -1,7 +1,7 @@
 # Pamplin AI Agent Recipes — SPEC.md
 
-**Version:** 0.1
-**Status:** Draft for review
+**Version:** 0.1.1
+**Status:** Skeleton built and verified; ready for HANDOFF_02 (real recipe authoring)
 **Last updated:** 2026-05-08
 **Project lead:** Onur Seref (Pamplin BIT)
 **Predecessor project:** AI Workshop Triage Platform (SPEC.md v0.6.2)
@@ -18,7 +18,7 @@ The metaphor is deliberate. Each recipe has *ingredients* (Title, Description, I
 
 **Origin.** This project is a follow-up to the Pamplin AI Teaching Workshop (May 7, 2026), which surfaced unprompted faculty interest in building their own agents. The 23 recipes in v1 are derived from the actual selections and free-text submissions of 98 workshop participants, not from designer-imposed structure.
 
-**Deployment context.** The site is hosted on GitHub Pages under `contextmaps` (final URL TBD; placeholder `https://contextmaps.github.io/agent-recipes/`). The site can be accessed directly or embedded as an iframe in a Pamplin-hosted wrapper page if Pamplin IT (Jim Dickhans) has bandwidth to set one up. Direct access is the default-supported mode; iframe wrapping is optional.
+**Deployment context.** The site is hosted on GitHub Pages at `https://contextmaps.github.io/teaching-agents/`. The site can be accessed directly or embedded as an iframe in a Pamplin-hosted wrapper page if Pamplin IT (Jim Dickhans) has bandwidth to set one up. Direct access is the default-supported mode; iframe wrapping is optional.
 
 The site is not an AI tool. It is a static reference resource that helps faculty configure agents elsewhere.
 
@@ -352,17 +352,22 @@ Four platform tutorials plus one NotebookLM appendix.
 
 ### Each platform tutorial covers
 
-- **Step 1: Entry point.** How to navigate to the agent-creation UI. Screenshot showing the menu/button location.
-- **Step 2: Creation form.** Annotated screenshot mapping each field on the platform's form to the recipe's terminology (Title → Name, Description → Description, Instructions → Instructions/System Prompt, Knowledge Base → Sources/Files, Tools → Tools/Actions).
-- **Step 3: Save and share.** Screenshot of the share dialog. Explains how to get a shareable link, who can access it, and what to know about access tiers.
+Tutorials are **text-led with one anchoring screenshot per platform**. This format trades visual completeness for maintainability: text-based instructions survive UI tweaks better than three annotated screenshots, and a single anchor screenshot at the entry point still gives faculty a visual hook at the most disorienting moment ("where do I even click to start?").
+
+Structure of each tutorial page:
+
+- **Anchor screenshot** at the top: shows the entry point ("this is what you click to start"). One per platform.
+- **Step 1: Find the agent creation entry point.** Text instructions for navigating to the agent-creation UI.
+- **Step 2: Fill in the creation form.** Text instructions for filling out the platform's form, plus a small two-column field-mapping table (recipe terminology → platform terminology, e.g., "Title → Name" for ChatGPT).
+- **Step 3: Save and share.** Text instructions for saving and getting a shareable link, including notes on access tiers where relevant.
+- **"Last updated" date** in the page footer (faculty know what era they're looking at).
 
 Each tutorial:
-- 3 screenshots (12 total across the four primary tutorials)
-- Tight crops, light theme on all platforms (Copilot forced to light mode)
+- 1 screenshot (5 total: 4 platforms + 1 NotebookLM appendix)
+- Tight crops, light theme
 - No personal information visible in screenshots
-- Annotations baked into the PNG (numbered circles, arrows). Snagit or equivalent. Standardized arrow style across all four platforms.
+- Annotations baked into the PNG if the entry point is visually subtle (numbered circle or arrow). Standardized across platforms.
 - 1–2 minute scan, not a deep walkthrough
-- "Last updated" date in the page footer (faculty know what era they're looking at)
 
 ### Copilot vs. Copilot Studio note
 
@@ -387,21 +392,13 @@ Tutorials sit **below the catalog** on the home page (per ideation decision: cat
 
 ### Screenshot timing
 
-Onur produces the screenshots **after** SPEC and platform skeleton are built, not before. Filenames specified in this SPEC for Jim and CC to know what files to expect:
+Onur produces the screenshots **after** SPEC and platform skeleton are built, not before. The platform skeleton ships with placeholder PNGs at the paths below; Onur replaces them with real screenshots at his own pace. Filenames specified here for CC and Onur to know what files to expect:
 
 ```
-assets/tutorials/copilot/step1-entry.png
-assets/tutorials/copilot/step2-form.png
-assets/tutorials/copilot/step3-share.png
-assets/tutorials/chatgpt/step1-entry.png
-assets/tutorials/chatgpt/step2-form.png
-assets/tutorials/chatgpt/step3-share.png
-assets/tutorials/claude/step1-entry.png
-assets/tutorials/claude/step2-form.png
-assets/tutorials/claude/step3-share.png
-assets/tutorials/gemini/step1-entry.png
-assets/tutorials/gemini/step2-form.png
-assets/tutorials/gemini/step3-share.png
+assets/tutorials/copilot/entry-point.png
+assets/tutorials/chatgpt/entry-point.png
+assets/tutorials/claude/entry-point.png
+assets/tutorials/gemini/entry-point.png
 assets/tutorials/notebooklm/notebook-overview.png
 ```
 
@@ -541,9 +538,8 @@ Same architecture as the workshop platform: a Google Form with four fields (`typ
 ### Event types captured
 
 - `page_view` — payload: `{"page_type": "catalog" | "recipe" | "tutorial" | "about", "recipe_id": <slug or null>}`
-- `field_copied` — payload: `{"recipe_id": <slug>, "field_name": "instructions" | "description" | "knowledge_base" | "tools"}`
+- `field_copied` — payload: `{"recipe_id": <slug>, "field_name": "title" | "description" | "instructions" | "knowledge_base" | "tools"}`. The `title` field is included in this enumeration because faculty often want to copy the recipe title to use as their agent's name in the platform's "Name" field, and recipes site offers a copy button on the title for this reason.
 - `tutorial_step_viewed` — payload: `{"platform": "copilot" | ..., "step": 1 | 2 | 3}`. Optional; only fires if step-anchored navigation is implemented.
-- `family_section_expanded` — payload: `{"family_id": <id>}`. Only if family sections are collapsible (TBD in v0.1.x).
 
 ### Session ID
 
@@ -603,13 +599,16 @@ Per-iteration `HANDOFF_*.md` and `CC_PROMPT_HANDOFF_*.md` files created as neede
 
 Carried forward from the ideation conversation; to resolve in subsequent handoffs:
 
-- **Final repo URL.** Likely `contextmaps.github.io/agent-recipes/` or similar. Onur picks the path before HANDOFF_01.
-- **Google Form creation.** A new form needs to be created for the recipes site (separate from the workshop's). Onur creates and provides the four `entry_*` IDs and submission URL.
-- **About page content.** Brief origin story (workshop follow-up, Pamplin context, who built it). Draft in HANDOFF_01 or HANDOFF_02; not load-bearing for the platform skeleton.
-- **Family sections collapsible or always-expanded.** TBD based on usability feel after platform skeleton is built.
+- **Google Form creation.** A new form needs to be created for the recipes site (separate from the workshop's). Onur creates and provides the four `entry_*` IDs and submission URL — see `FORM_SETUP_GUIDE.md` in the repo for step-by-step instructions.
+- **About page content.** Brief origin story (workshop follow-up, Pamplin context, who built it). Draft in HANDOFF_02 or later; not load-bearing for the platform skeleton.
 - **Whether to add a "share this recipe" button.** Considered for v2 if analytics show recipes are being shared.
 - **Mobile screenshot strategy for tutorials.** All four platforms have mobile UIs that look different from desktop. v1 ships desktop-screenshot-only; mobile coverage deferred to v2.
 - **Iframe wrapper coordination with Jim.** If Jim has bandwidth to wrap the recipes site in a Pamplin page, do it; if not, the site is fine as a standalone destination. No blocking dependency.
+
+### Resolved during v0.1 → v0.1.1
+
+- ~~**Final repo URL.**~~ Locked: `contextmaps/teaching-agents`, served at `https://contextmaps.github.io/teaching-agents/`.
+- ~~**Family sections collapsible or always-expanded.**~~ Locked: always-expanded. With 23 recipes across 7 families and the catalog being the load-bearing browse surface, hiding recipes behind clicks fights the breadth-visibility goal of having 23 recipes in the first place. Revisit if analytics show faculty are overwhelmed.
 
 ---
 
@@ -626,5 +625,7 @@ Carried forward from the ideation conversation; to resolve in subsequent handoff
 ---
 
 ## Change log
+
+- **v0.1.1 (2026-05-08):** Patch after platform skeleton built and smoke-tested. Three updates: (1) §8 Tutorial Section corrected from "3 screenshots × 4 platforms = 12 total" to "1 anchor screenshot per platform = 5 total" with text-led step content — this codifies a decision made during ideation that was reflected in HANDOFF_01 but never backported into SPEC v0.1, surfaced as a SPEC-vs-HANDOFF conflict in CC's HANDOFF_01 report and resolved here. Screenshot filename inventory updated accordingly. (2) §11 Behavioral Analytics: `field_copied` enumeration extended to include `title` (faculty often copy the recipe title to use as their agent's Name in the platform), per CC's flagged ambiguity in the HANDOFF_01 report. (3) §11 Behavioral Analytics: removed `family_section_expanded` event because the design decision settled on always-expanded family sections (no collapsible behavior in v1). (4) §1 Deployment context: stale `agent-recipes/` URL replaced with the locked-in `teaching-agents/` repo URL. (5) Header status updated to reflect skeleton-built-and-verified state. Note: HANDOFF_01_PATCH (path bugs in template asset and navigation references) was a CC-process artifact, not a SPEC-level change — the SPEC architecture was correct as written; the patch fixed a template implementation bug. The patch is recorded in the project's git history and CC's patch report.
 
 - **v0.1 (2026-05-08):** Initial draft. Project scope defined: 23 teaching-focused recipes across 7 families, derived from May 7 workshop demand data (98 submissions). Catalog, family ordering, tier distribution, platform recommendations, and architectural decisions all locked. Build pipeline (Python + Jinja2 → static HTML) specified. Tutorial section structure (4 primary platforms + NotebookLM appendix) specified. Behavioral analytics carried over from workshop platform pattern. Open questions enumerated for resolution in subsequent handoffs.
