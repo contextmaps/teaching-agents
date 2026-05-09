@@ -1,7 +1,7 @@
 # Pamplin AI Agent Recipes — SPEC.md
 
-**Version:** 0.1.1
-**Status:** Skeleton built and verified; ready for HANDOFF_02 (real recipe authoring)
+**Version:** 0.1.2
+**Status:** Skeleton built and verified; Family 2 recipes authored; ready for HANDOFF_03 (Family 1 recipe authoring)
 **Last updated:** 2026-05-08
 **Project lead:** Onur Seref (Pamplin BIT)
 **Predecessor project:** AI Workshop Triage Platform (SPEC.md v0.6.2)
@@ -307,7 +307,7 @@ Each recipe page renders six fields, in this fixed order:
 
 1. **Title** — the recipe name (also the page `<h1>`)
 2. **Description** — one or two sentences. What the agent does and for whom.
-3. **Instructions** — the system prompt; load-bearing field. Long-form (200–800 words depending on recipe).
+3. **Instructions** — the system prompt; load-bearing field. Long-form (typically 4,000–7,000 characters; hard upper bound 7,500 characters per the Copilot Basic platform constraint — see "Authoring conventions" below).
 4. **Knowledge Base** — what to upload as grounding sources, or "none."
 5. **Tools** — platform-specific tools or actions to enable, or "none." (Most v1 recipes will have "none.")
 6. **Recommended Platforms** — the badge ("Best on X · …") plus the trade-off sub-line.
@@ -317,6 +317,7 @@ Each recipe page renders six fields, in this fixed order:
 - Breadcrumb: `Home › Family Name › Recipe Title`
 - `<h1>` Recipe title
 - Tier badge (Light / Medium / Heavy) and Family pill, side by side
+- DRAFT banner — visible only when the recipe's `content_status` is not `"final"`. Marks recipes whose Instructions are still placeholder content. Suppressed automatically once real Instructions are authored and `content_status` is set to `"final"`.
 - One-paragraph framing (3–4 sentences) — what this recipe does, who it's for, what success looks like
 
 ### Field rendering
@@ -337,12 +338,36 @@ Some fields don't apply on some platforms (e.g., a recipe with no Tools field do
 - **Tools** — renders only if the recipe specifies tools or actions. Sub-text notes which platforms support each tool. For most v1 recipes, this field is "none."
 - **Recommended Platforms** — renders as the badge + trade-off, not as copyable text. This field is for the faculty member's decision, not for paste-into-platform.
 
+### Customization notes section
+
+Below the field stack, recipes with `content_status: "final"` and a non-empty `customization_notes` field render a **Customization notes** section. This is a separate visual block from the Instructions card, with:
+
+- Lighter background (`--c-bg-muted`) and reduced visual weight to signal "metadata about the recipe, not part of the recipe itself."
+- Smaller heading style; no copy button (the section is documentation, not paste-into-platform content).
+- The `customization_notes` field is freeform markdown; the build pre-renders it to HTML during build, so `<ul>`, `<strong>`, `<code>`, and `<em>` all render natively in the page.
+
+The customization notes content typically includes two parts:
+
+- **Quick swaps** — find-and-replace items (course code, professor name, email) for the obviously-customizable values.
+- **Behavioral customizations** — explanations of which Instructions sections most reward customization, what changing them does, and any cross-recipe notes about deploying alongside related agents.
+
+Recipes still in `"draft"` status (no real Instructions yet) do not render this section.
+
 ### After the field stack
 
 - "How to use this recipe" mini-section (3–5 sentences): "Open [primary platform] → click [agent creation entry point]. Paste each field into the corresponding form input. The Tutorial section (link) walks through the UI for each platform if you haven't built an agent before."
 - Cross-link: "Related recipes in this family" — 2–3 other recipes from the same family, as small cards.
 
 The recipe page is dense but not crowded. Target reading time: 3–5 minutes for a faculty member doing the build immediately.
+
+### Authoring conventions
+
+Recipe Instructions text follows two conventions established during HANDOFF_02:
+
+- **Guillemet markers `«...»`** denote customization slots within the Instructions text. Each marker wraps a phrase that faculty are most likely to want to change (e.g., `«FIN 3104: Introduction to Finance»`, `«Professor Smith»`). The brackets are part of the rendered prose; the AI agent reads them as ordinary punctuation. Faculty searching the Instructions for `«` find every customization slot in seconds. The Instructions are written so the agent works correctly out of the box with the example values pre-filled — customization is optional polish, not a required step.
+- **7,500-character upper bound on Instructions.** Each Instructions field is capped well under Copilot Basic's 8,000-character platform limit, leaving roughly 500 characters of headroom for faculty additions. Customization notes are NOT counted against this limit (they're metadata on the recipe page, not part of the agent's system prompt).
+
+Customization notes use markdown formatting. Sub-bullets must be indented with **two spaces**, not four — this matches the build's markdown configuration (`tab_length=2`) so nested lists render as nested `<ul>` rather than flattening.
 
 ---
 
@@ -445,7 +470,7 @@ Reads all sources in `recipes/` and `tutorials/`, plus `site_content.json` and `
 
 ### Dependencies
 
-Single dependency: **Jinja2** (template rendering). Installed via `pip install jinja2`. No other external dependencies. Build runs in under 5 seconds for 23 recipes.
+Two dependencies: **Jinja2** (template rendering) and **markdown** (renders the customization notes field from markdown to HTML at build time, with `tab_length=2` for nested lists). Both pinned in `requirements.txt`. Installed via `pip install -r requirements.txt`. Build runs in under 5 seconds for 23 recipes; sub-second on cached re-runs.
 
 ### Recipe JSON schema
 
@@ -460,7 +485,7 @@ Single dependency: **Jinja2** (template rendering). Installed via `pip install j
   "description": "Plays a specific stakeholder...",
   "framing_paragraph": "This recipe lets you build an agent that...",
   "fields": {
-    "instructions": "You are a [stakeholder type]. ...",
+    "instructions": "You are a «stakeholder type». ...",
     "knowledge_base": "Optional. If you want the agent grounded on a specific stakeholder's past statements or documents (e.g., investor letters, regulatory rulings), upload those.",
     "tools": "None for v1.",
     "recommended_platforms": {
@@ -469,9 +494,16 @@ Single dependency: **Jinja2** (template rendering). Installed via `pip install j
       "tradeoff_subline": "Claude holds a single character voice across long roleplay..."
     }
   },
-  "related_recipes": ["case-discussion-facilitator", "structured-debate-moderator"]
+  "related_recipes": ["case-discussion-facilitator", "structured-debate-moderator"],
+  "content_status": "final",
+  "customization_notes": "The Instructions are filled in with example values for «stakeholder type». To customize for your course, search the Instructions text for `«` and you'll find every customization point.\n\n**Quick swaps:**\n\n- ..."
 }
 ```
+
+The two optional fields introduced in HANDOFF_02:
+
+- **`content_status`** — string. Values: `"draft"` (default if absent) or `"final"`. Controls whether the DRAFT banner renders on the recipe page. Recipes ship as `"draft"` until their Instructions are authored and calibrated; they flip to `"final"` when the recipe is ready to use. The build defaults absent values to `"draft"` during recipe load (so templates can branch unconditionally).
+- **`customization_notes`** — string of freeform markdown. Optional. Renders as a separate "Customization notes" section below the Instructions field on the recipe page when present and `content_status` is `"final"`. Pre-rendered to HTML at build time using the `markdown` library with `tab_length=2`.
 
 ### Per-recipe field validation
 
@@ -549,30 +581,43 @@ UUID v4 generated client-side at first page load. Persists for the browser sessi
 
 ## 12. Calibration Plan
 
-The Instructions field is the load-bearing artifact of every recipe. Faculty success depends on the agent built from the recipe behaving as expected. This requires deliberate calibration before launch.
+The Instructions field is the load-bearing artifact of every recipe. Faculty success depends on the agent built from the recipe behaving as expected. The project takes a deliberate, stratified approach to calibration:
 
-### Calibration method
+### Authoring discipline (Claude)
 
-For each recipe:
+Recipe Instructions are authored by Claude in the SPEC/HANDOFF conversation, with explicit attention to:
 
-1. Author the Instructions field as a draft.
-2. Build the agent on the primary recommended platform.
-3. Run 2–3 representative prompts at a faculty member would.
-4. Evaluate against a checklist:
-   - Does the agent stay in role across multiple turns?
-   - Does it produce specific, course-relevant output rather than generic?
-   - Does it handle edge cases (off-topic asks, ambiguous inputs) gracefully?
-   - For student-facing recipes (Family 2): does the agent maintain its guardrails under pressure?
-5. If the agent fails on a recurring axis, revise the Instructions field.
-6. Repeat until 3 consecutive runs pass without intervention.
+- **Out-of-the-box correctness.** The Instructions are written so that a faculty member who copies them verbatim into their preferred platform — without changing the embedded example values — gets a working agent. Customization is optional polish, not a required step.
+- **Behavioral specificity.** Where the recipe relies on a guardrail (e.g., the spoiler-protection in 2.2 Concept Tutor) or a non-obvious behavior (e.g., the adaptive Socratic questioning in 2.3 Practice Partner), the Instructions text spends words explicitly on the behavior, including how to hold the line under pressure where relevant.
+- **Tone and voice.** Every recipe's Instructions are written in a register that's professional but not stiff, direct but not curt — matching the workshop platform's overall voice and Pamplin's faculty-facing tone.
+- **Cross-platform neutrality.** Instructions are written to work on all four platforms in scope (Copilot, Gemini, Claude, ChatGPT). Where platform-specific considerations matter, they appear in the recipe's customization notes, not in the Instructions field itself.
+
+### Skim review (Onur)
+
+Onur reads each handoff's recipe content as a skim review, not a structured calibration. The review catches obvious issues (incorrect Pamplin context, tone mismatches, scope creep, factual errors). The review does NOT involve building the agent on the actual platform and running test prompts under pressure. This is a deliberate scope choice driven by Onur's available time.
+
+### Deployment calibration (faculty)
+
+The recipes are explicitly framed as starting points, not finished products. Each recipe's customization notes section (introduced in HANDOFF_02) tells faculty exactly which sections most reward customization and what changing them would do behaviorally. The expected workflow is:
+
+1. Faculty member copies the recipe verbatim.
+2. Builds the agent on their platform of choice.
+3. Tests the agent in their own course context with their own students or test prompts.
+4. Adjusts the Instructions to match their specific course, teaching style, and student population — using the customization notes as a guide.
+
+The recipe is the ingredient list and method; the chef brings their own judgment to the kitchen. Recipes that don't match a faculty member's context aren't broken — they're a starting point that faculty modify.
 
 ### Calibration sequencing
 
-Calibrate Family 2 (student-facing) recipes first — they have the highest stakes (guardrails matter, faculty deploy to real students) and the longest Instructions fields. Then Family 1 (in-class activity engines) — highest demand from workshop. Then 3, 5, 6, 4, 7 in roughly that order.
+Recipes are authored family-by-family in handoff cycles, sequenced by demand from the May 7 workshop and by stakes:
 
-### Calibration not in v0.1 SPEC
+- **HANDOFF_02 — Family 2 (student-facing always-on agents, 4 recipes).** Authored first because student-facing recipes have the highest stakes (deployed to real students with potential to mislead) and the longest, most guardrail-heavy Instructions. Sets the bar for the rest.
+- **HANDOFF_03 — Family 1 (in-class activity engines, 6 recipes).** Highest workshop demand (25/98 submissions for `design_activity`). Largest family.
+- **HANDOFF_04+** — remaining families in sequence: 3 (Discussion and case-method), 5 (Assessment and feedback), 6 (Examples, cases, content), 4 (Course architecture), 7 (AI-policy).
 
-Specific Instructions text for each of the 23 recipes is not in this SPEC. That content is the work of the next several handoffs. SPEC v0.1 establishes the architecture and inventory; subsequent SPECs (v0.2, v0.3) will reflect the calibrated Instructions text as it stabilizes.
+### Banner mechanism
+
+Every recipe page displays a visible DRAFT banner until its Instructions are authored. The banner is controlled per-recipe via the `content_status` field (`"draft"` shows the banner, `"final"` suppresses it). Faculty browsing the catalog see clearly which recipes are ready and which are still under development.
 
 ---
 
@@ -625,6 +670,8 @@ Carried forward from the ideation conversation; to resolve in subsequent handoff
 ---
 
 ## Change log
+
+- **v0.1.2 (2026-05-08):** Captures schema and authoring-convention additions from HANDOFF_02 (Family 2 recipe authoring). Five updates: (1) §7 Recipe Page Anatomy: documented the new "Customization notes" section that renders below the Instructions card on recipes with `content_status: "final"`. The section is markdown-rendered, visually distinct from the Instructions card, and contains "quick swaps" plus "behavioral customizations" guidance for faculty who want to adapt the recipe. (2) §7 Page header: added the conditional DRAFT banner mechanism, suppressed when `content_status: "final"`. (3) §7 Authoring conventions: codified the guillemet marker convention `«...»` for customization slots within Instructions text, the 7,500-character upper bound on Instructions (Copilot Basic platform constraint), and the two-space indentation requirement for nested bullets in customization notes. (4) §9 Build Pipeline: added `markdown` (pinned at 3.10.2 with `tab_length=2`) as a second dependency alongside Jinja2; updated the recipe JSON schema to include `content_status` and `customization_notes` as optional fields. (5) §12 Calibration Plan: rewritten to reflect the actual approach — Claude authors with discipline, Onur skim-reviews, deploying faculty calibrate to their own contexts using the customization notes as a guide. The original "build the agent and run test prompts" calibration method was deliberately scoped out per Onur's available time. After this version, four of 23 recipes (Family 2: 2.1, 2.2, 2.3, 2.4) ship with real Instructions and customization notes; the other 19 remain on placeholder content with DRAFT banners visible.
 
 - **v0.1.1 (2026-05-08):** Patch after platform skeleton built and smoke-tested. Three updates: (1) §8 Tutorial Section corrected from "3 screenshots × 4 platforms = 12 total" to "1 anchor screenshot per platform = 5 total" with text-led step content — this codifies a decision made during ideation that was reflected in HANDOFF_01 but never backported into SPEC v0.1, surfaced as a SPEC-vs-HANDOFF conflict in CC's HANDOFF_01 report and resolved here. Screenshot filename inventory updated accordingly. (2) §11 Behavioral Analytics: `field_copied` enumeration extended to include `title` (faculty often copy the recipe title to use as their agent's Name in the platform), per CC's flagged ambiguity in the HANDOFF_01 report. (3) §11 Behavioral Analytics: removed `family_section_expanded` event because the design decision settled on always-expanded family sections (no collapsible behavior in v1). (4) §1 Deployment context: stale `agent-recipes/` URL replaced with the locked-in `teaching-agents/` repo URL. (5) Header status updated to reflect skeleton-built-and-verified state. Note: HANDOFF_01_PATCH (path bugs in template asset and navigation references) was a CC-process artifact, not a SPEC-level change — the SPEC architecture was correct as written; the patch fixed a template implementation bug. The patch is recorded in the project's git history and CC's patch report.
 
