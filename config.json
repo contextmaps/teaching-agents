@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "Pamplin AI Agent Recipes",
+    "title": "Pamplin AI Agent Recipes for Teaching",
     "tagline": "Concrete agent designs for Pamplin faculty.",
     "base_url": "https://contextmaps.github.io/teaching-agents/",
     "iframe_compatible": true,
