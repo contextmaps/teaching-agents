@@ -8,15 +8,15 @@ Reads:
   - recipes/*.json   (one per recipe)
   - tutorials/*.json (one per platform plus notebooklm)
   - templates/*.html (Jinja2)
-  - assets/**        (copied verbatim into dist/)
+  - assets/**        (copied verbatim into docs/)
 
 Writes:
-  - dist/index.html
-  - dist/recipes/<slug>.html   (one per recipe)
-  - dist/tutorials/<platform>.html (one per primary platform)
-  - dist/tutorials/notebooklm.html
-  - dist/about.html
-  - dist/assets/**             (mirrors source assets)
+  - docs/index.html
+  - docs/recipes/<slug>.html   (one per recipe)
+  - docs/tutorials/<platform>.html (one per primary platform)
+  - docs/tutorials/notebooklm.html
+  - docs/about.html
+  - docs/assets/**             (mirrors source assets)
 
 Single dependency: jinja2.
 """
@@ -39,7 +39,7 @@ RECIPES_DIR = REPO_ROOT / "recipes"
 TUTORIALS_DIR = REPO_ROOT / "tutorials"
 TEMPLATES_DIR = REPO_ROOT / "templates"
 ASSETS_DIR = REPO_ROOT / "assets"
-DIST_DIR = REPO_ROOT / "dist"
+OUTPUT_DIR = REPO_ROOT / "docs"
 CONFIG_PATH = REPO_ROOT / "config.json"
 SITE_CONTENT_PATH = REPO_ROOT / "site_content.json"
 
@@ -208,24 +208,24 @@ def best_on_label(best_on_list: list[str]) -> str:
 
 
 def copy_assets() -> None:
-    dest = DIST_DIR / "assets"
+    dest = OUTPUT_DIR / "assets"
     if dest.exists():
         shutil.rmtree(dest)
     shutil.copytree(ASSETS_DIR, dest)
 
 
-def ensure_dist() -> None:
-    if DIST_DIR.exists():
-        # Fully clear dist for idempotent output.
-        for child in DIST_DIR.iterdir():
+def ensure_output_dir() -> None:
+    if OUTPUT_DIR.exists():
+        # Fully clear the output directory for idempotent output.
+        for child in OUTPUT_DIR.iterdir():
             if child.is_dir():
                 shutil.rmtree(child)
             else:
                 child.unlink()
     else:
-        DIST_DIR.mkdir(parents=True, exist_ok=True)
-    (DIST_DIR / "recipes").mkdir(parents=True, exist_ok=True)
-    (DIST_DIR / "tutorials").mkdir(parents=True, exist_ok=True)
+        OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "recipes").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "tutorials").mkdir(parents=True, exist_ok=True)
 
 
 def write(path: Path, content: str) -> None:
@@ -268,7 +268,7 @@ def main() -> int:
 
     recipes_by_id = {r["id"]: r for r in recipes}
 
-    ensure_dist()
+    ensure_output_dir()
 
     env = Environment(
         loader=FileSystemLoader(str(TEMPLATES_DIR)),
@@ -297,8 +297,8 @@ def main() -> int:
         "root_prefix": "",   # already at site root
         "recipes_by_family": recipes_by_family,
     })
-    write(DIST_DIR / "index.html", catalog_tmpl.render(**catalog_ctx))
-    print("  wrote dist/index.html")
+    write(OUTPUT_DIR / "index.html", catalog_tmpl.render(**catalog_ctx))
+    print("  wrote docs/index.html")
 
     # ---- recipe pages ----
     recipe_tmpl = env.get_template("recipe.html")
@@ -312,15 +312,15 @@ def main() -> int:
         ctx = dict(base_context)
         ctx.update({
             "page": {"type": "recipe", "recipe_id": r["id"]},
-            "root_prefix": "../",   # one level up from dist/recipes/
+            "root_prefix": "../",   # one level up from docs/recipes/
             "recipe": r,
             "family_label": family_label_by_id[r["family_id"]],
             "related": related,
         })
-        out_path = DIST_DIR / "recipes" / f"{r['id']}.html"
+        out_path = OUTPUT_DIR / "recipes" / f"{r['id']}.html"
         write(out_path, recipe_tmpl.render(**ctx))
         rendered_recipes += 1
-    print(f"  wrote {rendered_recipes} recipe page(s) under dist/recipes/")
+    print(f"  wrote {rendered_recipes} recipe page(s) under docs/recipes/")
 
     # ---- tutorial pages ----
     tutorial_tmpl = env.get_template("tutorial.html")
@@ -333,16 +333,16 @@ def main() -> int:
                 "type": "notebooklm" if platform_id == "notebooklm" else "tutorial",
                 "recipe_id": None,
             },
-            "root_prefix": "../",   # one level up from dist/tutorials/
+            "root_prefix": "../",   # one level up from docs/tutorials/
             "tutorial": tut,
         })
-        out_path = DIST_DIR / "tutorials" / f"{platform_id}.html"
+        out_path = OUTPUT_DIR / "tutorials" / f"{platform_id}.html"
         if platform_id == "notebooklm":
             write(out_path, notebooklm_tmpl.render(**ctx))
         else:
             write(out_path, tutorial_tmpl.render(**ctx))
         rendered_tutorials += 1
-    print(f"  wrote {rendered_tutorials} tutorial page(s) under dist/tutorials/")
+    print(f"  wrote {rendered_tutorials} tutorial page(s) under docs/tutorials/")
 
     # ---- about page ----
     about_tmpl = env.get_template("about.html")
@@ -351,12 +351,12 @@ def main() -> int:
         "page": {"type": "about", "recipe_id": None},
         "root_prefix": "",   # already at site root
     })
-    write(DIST_DIR / "about.html", about_tmpl.render(**about_ctx))
-    print("  wrote dist/about.html")
+    write(OUTPUT_DIR / "about.html", about_tmpl.render(**about_ctx))
+    print("  wrote docs/about.html")
 
     # ---- copy assets ----
     copy_assets()
-    print("  copied assets/ -> dist/assets/")
+    print("  copied assets/ -> docs/assets/")
 
     elapsed = time.time() - started
     print(f"build complete in {elapsed:.2f}s")

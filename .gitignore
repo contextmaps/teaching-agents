@@ -19,5 +19,5 @@ desktop.ini
 *.swo
 *~
 
-# Build artifacts (dist/ is tracked; uncomment to ignore for staging-only setups)
-# dist/
+# Build artifacts (docs/ is tracked; uncomment to ignore for staging-only setups)
+# docs/

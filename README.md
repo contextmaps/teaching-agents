@@ -9,7 +9,9 @@ pip install -r requirements.txt
 python3 build.py
 ```
 
-The build reads `recipes/`, `tutorials/`, `site_content.json`, and `config.json`, renders Jinja2 templates from `templates/`, and writes the static site to `dist/`. The build is idempotent and runs in well under five seconds. Single dependency: Jinja2.
+The build reads `recipes/`, `tutorials/`, `site_content.json`, and `config.json`, renders Jinja2 templates from `templates/`, and writes the static site to `docs/`. The build is idempotent and runs in well under five seconds. Single dependency: Jinja2.
+
+GitHub Pages serves the live site from this `docs/` folder on `main` (Pages does not support arbitrary folder names — only `/(root)` or `/docs`). The build output is committed; no CI is needed.
 
 **Live site:** <https://contextmaps.github.io/teaching-agents/>
 
