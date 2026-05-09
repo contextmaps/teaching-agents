@@ -1,8 +1,8 @@
 # Pamplin AI Agent Recipes — SPEC.md
 
-**Version:** 0.1.2
-**Status:** Skeleton built and verified; Family 2 recipes authored; ready for HANDOFF_03 (Family 1 recipe authoring)
-**Last updated:** 2026-05-08
+**Version:** 0.1.3
+**Status:** Content complete (23/23 recipes authored). Build output folder renamed to `docs/` for native GitHub Pages deployment. Ready for operational items (real tutorial screenshots, real Google Form IDs for analytics, real About page copy).
+**Last updated:** 2026-05-09
 **Project lead:** Onur Seref (Pamplin BIT)
 **Predecessor project:** AI Workshop Triage Platform (SPEC.md v0.6.2)
 
@@ -60,11 +60,11 @@ The site is not an AI tool. It is a static reference resource that helps faculty
    v
 [Build step: Python]
    build.py reads JSON sources + page templates,
-   writes static HTML to dist/ along with assets.
+   writes static HTML to docs/ along with assets.
    
    |
    v
-[Static site: dist/]
+[Static site: docs/]
    index.html                  (catalog home — 23 recipes grouped by family)
    recipes/<slug>.html         (one page per recipe)
    tutorials/<platform>.html   (one page per platform: copilot, chatgpt, claude, gemini)
@@ -74,7 +74,7 @@ The site is not an AI tool. It is a static reference resource that helps faculty
    
    |
    v
-[GitHub Pages serves dist/]
+[GitHub Pages serves docs/]
    Faculty browse, copy recipe fields per-platform,
    paste into agent-creation UI in the platform of their choice.
    
@@ -86,7 +86,11 @@ The site is not an AI tool. It is a static reference resource that helps faculty
    No backend; same pattern as workshop platform.
 ```
 
-**Build step.** Python 3 script (`build.py`) in repo root. Reads JSON sources, renders against Jinja2 templates, writes HTML to `dist/`. Run locally before commit; `dist/` is committed to the repo and served by GitHub Pages from a configured branch (likely `main` or `gh-pages`). No CI/CD; no external build infrastructure. This matches the workshop platform's no-backend discipline.
+**Build step.** Python 3 script (`build.py`) in repo root. Reads JSON sources, renders against Jinja2 templates, writes HTML to `docs/`. Run locally before commit; `docs/` is committed to the repo and served by GitHub Pages from `main` branch, `/docs` folder. No CI/CD; no external build infrastructure. This matches the workshop platform's no-backend discipline.
+
+**On the choice of `docs/` as the output folder.** GitHub Pages' "deploy from a branch" feature only supports two folders: `/(root)` or `/docs`. Arbitrary folder names like `/dist` (which we used initially) are not supported. To enable native Pages deployment without adding a CI workflow, the build output lives in `docs/`. The name is slightly misleading (this is rendered HTML, not documentation), but the convention is universal across GitHub Pages projects and incurs no semantic confusion in practice.
+
+**GitHub Pages configuration.** In the repo's Settings → Pages, the deployment is configured as: Source = "Deploy from a branch", Branch = `main`, Folder = `/docs`. This is a one-time setup; once configured, every push to `main` that updates `docs/` triggers an automatic redeploy. The site is served at `https://contextmaps.github.io/teaching-agents/`.
 
 **Why static-build over single-page-app.** Real per-recipe URLs are shareable, indexable, and load fast on slow connections. A 23-page static build adds about 30 lines of Python over a single-file SPA, and the result is more honest about what each page is.
 
@@ -453,11 +457,12 @@ templates/
   about.html
   base.html          (header/footer/CSS)
 
-build.py             (Python 3 script; reads JSON + templates → writes dist/)
+build.py             (Python 3 script; reads JSON + templates → writes docs/)
 config.json          (site config: form submission URL, agent-recipe family ordering,
                       analytics flags, last-updated dates per tutorial)
 
-dist/                (built site; committed to repo, served by GitHub Pages)
+docs/                (built site; committed to repo, served by GitHub Pages from
+                      main branch, /docs folder)
 ```
 
 ### Build command
@@ -466,7 +471,7 @@ dist/                (built site; committed to repo, served by GitHub Pages)
 python3 build.py
 ```
 
-Reads all sources in `recipes/` and `tutorials/`, plus `site_content.json` and `config.json`. Renders all pages to `dist/`. Idempotent (running twice produces identical output).
+Reads all sources in `recipes/` and `tutorials/`, plus `site_content.json` and `config.json`. Renders all pages to `docs/`. Idempotent (running twice produces identical output).
 
 ### Dependencies
 
@@ -633,7 +638,7 @@ Every recipe page displays a visible DRAFT banner until its Instructions are aut
 | `config.json` | Site configuration; form submission URLs; tutorial last-updated dates. |
 | `templates/*.html` | Jinja2 templates for catalog, recipe, tutorial, about, base. |
 | `build.py` | Python build script. |
-| `dist/` | Built static site, committed to repo and served by GitHub Pages. |
+| `docs/` | Built static site, committed to repo and served by GitHub Pages from `main` branch, `/docs` folder. |
 | `JIM_INTEGRATION_NOTES.md` | Operational notes for Pamplin IT (iframe wrapping if applicable, agent URL not relevant for this project, data capture). |
 
 Per-iteration `HANDOFF_*.md` and `CC_PROMPT_HANDOFF_*.md` files created as needed.
@@ -670,6 +675,8 @@ Carried forward from the ideation conversation; to resolve in subsequent handoff
 ---
 
 ## Change log
+
+- **v0.1.3 (2026-05-09):** Captures the build output folder rename from HANDOFF_08, plus the GitHub Pages configuration that follows. Three updates: (1) §3 Architecture: build pipeline now writes to `docs/` instead of `dist/`. The architecture diagram and accompanying prose updated. (2) §3 Architecture: added an explicit explanation of why `docs/` was chosen — GitHub Pages only supports `/(root)` or `/docs` as deployment folders, not arbitrary names. The naming is slightly misleading (this is rendered HTML, not documentation) but matches the universal GitHub Pages convention. (3) §3 Architecture: added a "GitHub Pages configuration" subsection documenting the one-time deployment setup (Settings → Pages, Source = "Deploy from a branch", Branch = `main`, Folder = `/docs`) so the configuration is captured in a project artifact rather than only in GitHub's UI. (4) §9 Build Pipeline and §13 Artifact Inventory: references to `dist/` updated to `docs/`. No content, behavior, or schema changes — purely an operational rename to enable native GitHub Pages deployment. After this version, all 23 recipes still ship with real content (no regression from v0.1.2's content state); the only difference is where the rendered site lives in the repo.
 
 - **v0.1.2 (2026-05-08):** Captures schema and authoring-convention additions from HANDOFF_02 (Family 2 recipe authoring). Five updates: (1) §7 Recipe Page Anatomy: documented the new "Customization notes" section that renders below the Instructions card on recipes with `content_status: "final"`. The section is markdown-rendered, visually distinct from the Instructions card, and contains "quick swaps" plus "behavioral customizations" guidance for faculty who want to adapt the recipe. (2) §7 Page header: added the conditional DRAFT banner mechanism, suppressed when `content_status: "final"`. (3) §7 Authoring conventions: codified the guillemet marker convention `«...»` for customization slots within Instructions text, the 7,500-character upper bound on Instructions (Copilot Basic platform constraint), and the two-space indentation requirement for nested bullets in customization notes. (4) §9 Build Pipeline: added `markdown` (pinned at 3.10.2 with `tab_length=2`) as a second dependency alongside Jinja2; updated the recipe JSON schema to include `content_status` and `customization_notes` as optional fields. (5) §12 Calibration Plan: rewritten to reflect the actual approach — Claude authors with discipline, Onur skim-reviews, deploying faculty calibrate to their own contexts using the customization notes as a guide. The original "build the agent and run test prompts" calibration method was deliberately scoped out per Onur's available time. After this version, four of 23 recipes (Family 2: 2.1, 2.2, 2.3, 2.4) ship with real Instructions and customization notes; the other 19 remain on placeholder content with DRAFT banners visible.
 
