@@ -24,10 +24,12 @@
 
   <p class="framing-paragraph">{{ recipe.framing_paragraph }}</p>
 
+  {% if recipe.content_status != "final" %}
   <div class="draft-banner" role="note">
     <span class="draft-banner__label">Draft</span>
     <span>This recipe's Instructions are still being authored. The page structure is final; the text will be filled in soon.</span>
   </div>
+  {% endif %}
 
   <div class="field-stack">
 
@@ -79,6 +81,14 @@
         <p class="field__platform-note">Compatible with Copilot, ChatGPT, Claude, and Gemini.</p>
       </div>
     </section>
+
+    {# Customization notes (rendered only for final recipes that supply notes) #}
+    {% if recipe.customization_notes_html %}
+    <aside class="customization-notes" aria-labelledby="customization-notes-heading">
+      <h2 class="customization-notes__heading" id="customization-notes-heading">Customization notes</h2>
+      <div class="customization-notes__body">{{ recipe.customization_notes_html | safe }}</div>
+    </aside>
+    {% endif %}
 
     {# Knowledge Base #}
     {% if recipe.fields.knowledge_base %}

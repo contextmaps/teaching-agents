@@ -31,6 +31,7 @@ import time
 from pathlib import Path
 from typing import Any
 
+import markdown as md
 from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoescape
 
 REPO_ROOT = Path(__file__).resolve().parent
@@ -55,6 +56,7 @@ REQUIRED_RECIPE_KEYS = {
     "id", "number", "title", "family_id", "tier", "level",
     "description", "framing_paragraph", "fields", "related_recipes",
 }
+OPTIONAL_RECIPE_KEYS = {"content_status", "customization_notes"}
 REQUIRED_RECIPE_FIELD_KEYS = {
     "instructions", "knowledge_base", "tools", "recommended_platforms",
 }
@@ -62,6 +64,7 @@ REQUIRED_RECOMMENDED_KEYS = {
     "best_on", "comparative_phrase", "tradeoff_subline",
 }
 ALLOWED_TIERS = {"light", "medium", "heavy"}
+ALLOWED_CONTENT_STATUS = {"draft", "final"}
 
 REQUIRED_TUTORIAL_KEYS = {
     "platform_id", "platform_label", "intro_paragraph",
@@ -105,6 +108,19 @@ def validate_recipe(recipe: dict, source: Path) -> None:
     if not isinstance(recipe["related_recipes"], list):
         raise BuildError(f"{name}: related_recipes must be a list")
 
+    if "content_status" in recipe:
+        if recipe["content_status"] not in ALLOWED_CONTENT_STATUS:
+            raise BuildError(
+                f"{name}: content_status must be one of {sorted(ALLOWED_CONTENT_STATUS)}, "
+                f"got {recipe['content_status']!r}"
+            )
+    if "customization_notes" in recipe:
+        if not isinstance(recipe["customization_notes"], str):
+            raise BuildError(
+                f"{name}: customization_notes must be a string, "
+                f"got {type(recipe['customization_notes']).__name__}"
+            )
+
 
 def validate_tutorial(tutorial: dict, source: Path) -> None:
     name = source.name
@@ -143,10 +159,22 @@ def load_recipes() -> list[dict]:
         # File names are NN-slug.json; URL slug is the 'id' field.
         recipe["file_slug"] = recipe["id"]
         recipe["__source__"] = path.name
+        # Default content_status to "draft" so templates can branch unconditionally.
+        recipe.setdefault("content_status", "draft")
+        # Pre-render customization notes markdown to HTML; only surface it when
+        # the recipe is final and notes are present.
+        if recipe["content_status"] == "final" and recipe.get("customization_notes"):
+            recipe["customization_notes_html"] = md.markdown(
+                recipe["customization_notes"], tab_length=2
+            )
+        else:
+            recipe["customization_notes_html"] = None
         out.append(recipe)
     # Warn on unknown top-level keys (forward-compatible).
+    known = (REQUIRED_RECIPE_KEYS | OPTIONAL_RECIPE_KEYS
+             | {"file_slug", "__source__", "customization_notes_html"})
     for r in out:
-        unknown = r.keys() - (REQUIRED_RECIPE_KEYS | {"file_slug", "__source__"})
+        unknown = r.keys() - known
         if unknown:
             print(f"  warn: {r['__source__']}: unknown top-level field(s) {sorted(unknown)}",
                   file=sys.stderr)
