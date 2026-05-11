@@ -23,7 +23,9 @@
           <span class="tutorial-step__number" aria-hidden="true">{{ step.number }}</span>
           <span>{{ step.title }}</span>
         </h2>
-        <p class="tutorial-step__body">{{ step.body }}</p>
+        {% for paragraph in step.body.split('\n\n') %}
+        <p class="tutorial-step__body">{{ paragraph }}</p>
+        {% endfor %}
       </section>
     {% endfor %}
   </div>
