@@ -1,7 +1,7 @@
 # Pamplin AI Agent Recipes — SPEC.md
 
-**Version:** 0.1.3
-**Status:** Content complete (23/23 recipes authored). Build output folder renamed to `docs/` for native GitHub Pages deployment. Ready for operational items (real tutorial screenshots, real Google Form IDs for analytics, real About page copy).
+**Version:** 0.1.4
+**Status:** Content complete (23/23 recipes authored). Tutorials revised — text-led, no anchor screenshots, terminology + ask-the-platform fallback for UI durability. Site live at https://contextmaps.github.io/teaching-agents/. Ready for remaining operational items (real Google Form IDs for analytics, real About page copy).
 **Last updated:** 2026-05-09
 **Project lead:** Onur Seref (Pamplin BIT)
 **Predecessor project:** AI Workshop Triage Platform (SPEC.md v0.6.2)
@@ -377,59 +377,58 @@ Customization notes use markdown formatting. Sub-bullets must be indented with *
 
 ## 8. Tutorial Section
 
-Four platform tutorials plus one NotebookLM appendix.
+Four platform tutorials plus one NotebookLM appendix. Tutorials are **orientation-focused text**, not screenshot walkthroughs. The goal is to help faculty understand each platform's agent-creation paradigm — what it's called, what the configuration form looks like, how sharing works — not to walk them through every UI click.
 
-### Each platform tutorial covers
+### Why text-led without screenshots
 
-Tutorials are **text-led with one anchoring screenshot per platform**. This format trades visual completeness for maintainability: text-based instructions survive UI tweaks better than three annotated screenshots, and a single anchor screenshot at the entry point still gives faculty a visual hook at the most disorienting moment ("where do I even click to start?").
+Tutorial pages originally included one anchor screenshot per platform (5 PNGs total). HANDOFF_09 replaced that design with text-only tutorials. The rationale:
 
-Structure of each tutorial page:
+- **Screenshot maintenance is unrealistic.** The four main platforms (Copilot, ChatGPT, Claude, Gemini) update their UIs frequently. Walking through them during the project confirmed the existing tutorial text already didn't match current UIs in several places. Adding screenshots compounds the maintenance burden; removing them removes a false promise.
+- **Terminology is more durable than UI location.** "Agents," "GPTs," "Projects," "Gems" are product-marketing terms with significant inertia; they don't shift the way sidebar positions and button labels do. The tutorials anchor navigation on terminology, not on layout.
+- **Platforms know their own current UI.** When a faculty member can't find what the tutorial names, they can ask the platform directly ("How do I create a custom GPT?") and the platform will give current, accurate directions. This converts a maintenance problem we couldn't solve into a graceful fallback the platform solves automatically.
+- **Faculty are competent users.** Pamplin faculty can navigate platforms when given terminology to look for and a fallback path. The tutorial's job is orientation; navigation is the user's.
 
-- **Anchor screenshot** at the top: shows the entry point ("this is what you click to start"). One per platform.
-- **Step 1: Find the agent creation entry point.** Text instructions for navigating to the agent-creation UI.
-- **Step 2: Fill in the creation form.** Text instructions for filling out the platform's form, plus a small two-column field-mapping table (recipe terminology → platform terminology, e.g., "Title → Name" for ChatGPT).
-- **Step 3: Save and share.** Text instructions for saving and getting a shareable link, including notes on access tiers where relevant.
-- **"Last updated" date** in the page footer (faculty know what era they're looking at).
+### Structure of each tutorial page
 
-Each tutorial:
-- 1 screenshot (5 total: 4 platforms + 1 NotebookLM appendix)
-- Tight crops, light theme
-- No personal information visible in screenshots
-- Annotations baked into the PNG if the entry point is visually subtle (numbered circle or arrow). Standardized across platforms.
-- 1–2 minute scan, not a deep walkthrough
+Each main-platform tutorial (Copilot, ChatGPT, Claude, Gemini) has:
+
+- **Page header.** Platform name and breadcrumb.
+- **Framing paragraph.** What the platform calls "agent," what account requirements apply, what to expect.
+- **Step 1 — Find the creation entry point.** Tells faculty what terminology to look for (Agents, GPTs, Projects, Gems) and where it typically lives in the UI. Includes an embedded fallback: *"if you can't find it, ask [platform]: 'How do I get to the [creation page]?' and follow the directions it gives."*
+- **Step 2 — Fill in the configuration.** Tells faculty how to work between the recipe page and the platform's form. No fallback needed here — once on the form, they're filling in fields, not navigating.
+- **Step 3 — Save and share.** Same terminology-plus-fallback pattern as Step 1, since sharing UIs drift as much as creation UIs.
+- **Recipe-field-to-platform-field mapping table.** Two-column table showing how the recipe's fields (Title, Description, Instructions, Knowledge Base, Tools) map to that platform's form fields. This is the most directly useful part when faculty are mid-flow on the platform.
+- **Institutional note** where applicable. Preserves contextual information the platform's help system won't surface — e.g., the Copilot Studio note for Copilot, the external-sharing limitation note for Gemini, the "when to choose Claude Projects" note for Claude.
+
+NotebookLM gets a structurally different tutorial because NotebookLM is a structurally different tool. The three steps are: create a notebook → add sources → query the sources. No agent-configuration paradigm; no "find the creation entry point" navigation problem. The mapping table for NotebookLM is also different — only Knowledge Base maps cleanly (to Sources); the other recipe fields are best treated as the notebook's setup rather than form-field equivalents.
+
+### "Ask the platform" fallback — the durability mechanism
+
+The fallback phrasing is calibrated to be a clean escape hatch, not a hedge. The pattern: state what to look for, then in the same step provide the fallback as a single embedded clause.
+
+Example, Copilot Step 1: *"Look for 'Agents' or 'Create an agent' — typically in the left rail. The exact label and location shift with Microsoft's UI updates; if you can't find it, ask Copilot in the chat: 'How do I get to the page where I can create a custom agent?' and follow the directions it gives."*
+
+The fallback appears in Steps 1 (entry-point navigation) and 3 (share/publish navigation) for the four main platforms. It doesn't appear in Step 2 (filling the configuration), which is on-form work, or in any NotebookLM step (NotebookLM's UI is stable and direct).
 
 ### Copilot vs. Copilot Studio note
 
-The Copilot tutorial covers **Copilot Chat's** built-in agent creation feature, available to any VT faculty member. It does **not** cover Copilot Studio (the enterprise agent-builder), which requires elevated tenant access most faculty don't have.
+The Copilot tutorial covers **Copilot Chat's** built-in agent creation feature, available to any VT faculty member. It does **not** cover Copilot Studio (the enterprise agent-builder), which requires elevated tenant access most faculty don't have. The tutorial includes a one-paragraph institutional note at the bottom directing faculty interested in Copilot Studio to coordinate with Jim Dickhans (Pamplin IT).
 
-The Copilot tutorial includes a one-paragraph note at the bottom:
-> "Faculty wanting to build agents at the institutional tier — for instance, deploying to all students in a course with Pamplin IT support — should look at Copilot Studio. This is a separate, more advanced product that requires tenant access. Coordinate with Jim Dickhans (Pamplin IT) for that path."
+### Template implementation note
 
-### NotebookLM appendix
-
-A separate, shorter page (roughly half the length of a primary tutorial). Frames NotebookLM honestly:
-- Not a peer to the four primary platforms in the agent-creation paradigm.
-- A "shareable grounded chat" pattern: upload sources, configure chat behavior, share a notebook link.
-- Best for recipes where a faculty member wants to share grounded Q&A over uploaded materials without building a full agent.
-- One screenshot showing a notebook's chat interface and share dialog.
-
-Two recipes in the catalog (2.1 The Course FAQ Answerer, 2.4 The Reusable Course Assistant) reference NotebookLM as a "lightweight alternative" — those references link to this appendix page.
+Tutorial step bodies in the source JSON use `\n\n` to separate intentional paragraph breaks. The templates (`tutorial.html`, `notebooklm.html`) split each step body on `\n\n` and emit one `<p class="tutorial-step__body">` per resulting paragraph, so multi-paragraph steps render with visible paragraph breaks rather than collapsing into a single block. This pattern was introduced in HANDOFF_09_PATCH; single-paragraph step bodies render unchanged (the split loop produces a single iteration).
 
 ### Tutorial placement
 
 Tutorials sit **below the catalog** on the home page (per ideation decision: catalog is the value, tutorials are the reference). Tutorials are also accessible from a top nav link from any page.
 
-### Screenshot timing
+### NotebookLM as an alternative
 
-Onur produces the screenshots **after** SPEC and platform skeleton are built, not before. The platform skeleton ships with placeholder PNGs at the paths below; Onur replaces them with real screenshots at his own pace. Filenames specified here for CC and Onur to know what files to expect:
+Two recipes in the catalog (2.1 The Course FAQ Answerer, 2.4 The Reusable Course Assistant) reference NotebookLM as a lightweight alternative — those references link to the NotebookLM tutorial. NotebookLM is positioned in the tutorial itself as best for recipes that are fundamentally about querying course materials (the recipe's Knowledge Base is large and central); for recipes that depend on behavioral instructions (roleplay, debate moderation, structured feedback), one of the four main platforms is the better fit.
 
-```
-assets/tutorials/copilot/entry-point.png
-assets/tutorials/chatgpt/entry-point.png
-assets/tutorials/claude/entry-point.png
-assets/tutorials/gemini/entry-point.png
-assets/tutorials/notebooklm/notebook-overview.png
-```
+### What this section used to contain
+
+Through SPEC v0.1.3, this section described tutorials with one anchor screenshot per platform (5 PNGs total at `assets/tutorials/<platform>/`). That design is gone as of HANDOFF_09. The placeholder PNGs and their directories were deleted; the `tutorial.html` template was updated to remove the screenshot block; the field names for screenshot paths (`anchor_screenshot`, `anchor_screenshot_alt`) were removed from the tutorial JSON schema. No screenshots are referenced anywhere in the repo.
 
 ---
 
@@ -675,6 +674,8 @@ Carried forward from the ideation conversation; to resolve in subsequent handoff
 ---
 
 ## Change log
+
+- **v0.1.4 (2026-05-09):** Captures the tutorial design changes from HANDOFF_09 (and its small follow-up patch). Four updates: (1) §8 Tutorial Section rewritten end-to-end to reflect the new design — text-led tutorials with no anchor screenshots, using platform terminology (Agents, GPTs, Projects, Gems) as the durable navigation anchor and "ask the platform" as the embedded fallback when UI elements have shifted. The rationale is documented: screenshot maintenance is unrealistic for four rapidly-changing platforms, terminology is more durable than UI location, and the platforms themselves can answer current-UI questions better than any static tutorial. (2) §8 documents the per-platform tutorial structure (framing → 3 numbered steps → mapping table → institutional note), the embedded-fallback pattern in Steps 1 and 3, and the structural difference of the NotebookLM tutorial (which doesn't use the agent-configuration paradigm). (3) §8 documents the multi-paragraph step rendering pattern introduced in HANDOFF_09_PATCH: tutorial step bodies use `\n\n` to separate intentional paragraph breaks, and the templates split on that to emit one `<p>` per paragraph. (4) §8 closes with a "what this section used to contain" note documenting that the prior screenshot-anchored design is gone — placeholder PNGs deleted, `tutorial.html` updated, `anchor_screenshot` fields removed from the schema. No content, schema, or build-pipeline changes beyond the tutorial-asset cleanup. After this version, all 23 recipes still ship with real content (no regression from v0.1.3); the change is purely to the tutorial design.
 
 - **v0.1.3 (2026-05-09):** Captures the build output folder rename from HANDOFF_08, plus the GitHub Pages configuration that follows. Three updates: (1) §3 Architecture: build pipeline now writes to `docs/` instead of `dist/`. The architecture diagram and accompanying prose updated. (2) §3 Architecture: added an explicit explanation of why `docs/` was chosen — GitHub Pages only supports `/(root)` or `/docs` as deployment folders, not arbitrary names. The naming is slightly misleading (this is rendered HTML, not documentation) but matches the universal GitHub Pages convention. (3) §3 Architecture: added a "GitHub Pages configuration" subsection documenting the one-time deployment setup (Settings → Pages, Source = "Deploy from a branch", Branch = `main`, Folder = `/docs`) so the configuration is captured in a project artifact rather than only in GitHub's UI. (4) §9 Build Pipeline and §13 Artifact Inventory: references to `dist/` updated to `docs/`. No content, behavior, or schema changes — purely an operational rename to enable native GitHub Pages deployment. After this version, all 23 recipes still ship with real content (no regression from v0.1.2's content state); the only difference is where the rendered site lives in the repo.
 
