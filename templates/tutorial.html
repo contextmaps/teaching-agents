@@ -16,17 +16,6 @@
     <p class="recipe-header__description">{{ tutorial.intro_paragraph }}</p>
   </header>
 
-  <div class="tutorial-banner" role="note">
-    Tutorial content under review — last updated dates pending.
-  </div>
-
-  <figure class="tutorial-anchor">
-    <img src="{{ root_prefix }}{{ tutorial.anchor_screenshot }}"
-         alt="{{ tutorial.anchor_screenshot_alt }}"
-         loading="lazy"
-         width="800" height="500">
-  </figure>
-
   <div class="tutorial-steps">
     {% for step in tutorial.steps %}
       <section class="tutorial-step" aria-labelledby="step-{{ step.number }}">

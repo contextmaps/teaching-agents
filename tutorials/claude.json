@@ -1,33 +1,46 @@
 {
   "platform_id": "claude",
   "platform_label": "Claude",
-  "intro_paragraph": "Anthropic's Claude offers two paths for building shareable agents: Claude Projects (grounding + custom instructions, scoped to a workspace) and standalone shareable Claude.ai system prompts. Projects is the path most faculty want when a recipe specifies knowledge-base grounding. A Claude Pro or Team subscription is required for Projects; readers of a shared project need a Claude account.",
-  "anchor_screenshot": "assets/tutorials/claude/entry-point.png",
-  "anchor_screenshot_alt": "Placeholder for Claude's Projects entry point — to be replaced with a real screenshot.",
+  "intro_paragraph": "Claude calls custom agents \"Projects.\" A Project bundles a system prompt (called \"Custom instructions\") with a knowledge base (called \"Project knowledge\") and gives every conversation in the Project access to both. Projects are available on Claude Pro, Team, and Enterprise plans. This tutorial covers the standard Projects flow.",
   "steps": [
     {
       "number": 1,
-      "title": "Find the agent creation entry point",
-      "body": "From claude.ai, look at the left sidebar for \"Projects.\" Click \"+ Create Project.\" If you don't see Projects, your subscription tier doesn't include it — check your account settings or fall back to a system prompt in a regular conversation."
+      "title": "Find the Project creation entry point",
+      "body": "Sign in to Claude at claude.ai. Look for \"Projects\" in the left sidebar, then \"+ Create Project\" or \"New Project.\" The exact label shifts with UI updates; if you can't find it, ask Claude in any conversation: \"How do I create a new Project?\" and follow the directions it gives.\n\nNote: Claude's Projects are scoped contexts with custom instructions and knowledge, not autonomous agents in the way Copilot or GPTs are. The mental model is \"a workspace pre-loaded with instructions and reference material\" rather than \"an agent that acts on its own.\""
     },
     {
       "number": 2,
-      "title": "Fill in the creation form",
-      "body": "Give the project a Name (the recipe's Title) and a one-line Description. Open the project settings panel and paste the recipe's Instructions into the \"Custom instructions\" or \"System prompt\" field. For Knowledge Base, drag and drop files into the project's knowledge area — Claude supports PDFs, text, and code files up to the per-project size limit. Claude does not have a separate \"Tools\" toggle in the Projects UI; tool-using behaviors come from how the instructions are written."
+      "title": "Fill in the configuration",
+      "body": "Claude's Project setup is simpler than the other platforms — just two text fields and a knowledge area. Open your chosen recipe in a separate tab and use the copy buttons to fill each section. Use the mapping table below.\n\nThe Project's \"Custom instructions\" field takes the recipe's Instructions verbatim. The \"Project knowledge\" area is where you upload files specified in the recipe's Knowledge Base — Claude reads them at the start of every conversation in this Project.\n\nThere's no separate Tools or Capabilities section in standard Projects. Most recipes in this catalog don't need it."
     },
     {
       "number": 3,
-      "title": "Save and share your agent",
-      "body": "Open the project's share dialog from the top-right menu. Add specific email addresses or generate a shareable link. Members can converse with the project's grounded knowledge and instructions but typically can't edit the configuration. Copy the link into your syllabus or LMS."
+      "title": "Save and share",
+      "body": "Projects save automatically as you edit. Sharing depends on your plan: Pro Projects are individual-only (you'd need to share an exported version of the instructions and knowledge with another user manually); Team and Enterprise plans let you share Projects within your workspace.\n\nFor VT faculty sharing with students, the practical path is usually: give the student your recipe's Title, Description, and Instructions, plus the same knowledge files, and have them create their own Project on their own Claude account. The recipe is the durable artifact; the Project is one instantiation of it.\n\nIf your VT account has Claude Team or Enterprise access, ask Claude: \"How do I share this Project with my workspace?\" for the current sharing flow."
     }
   ],
   "field_mapping": [
-    {"recipe_field": "Title",          "platform_field": "Project name"},
-    {"recipe_field": "Description",    "platform_field": "Description"},
-    {"recipe_field": "Instructions",   "platform_field": "Custom instructions"},
-    {"recipe_field": "Knowledge Base", "platform_field": "Project knowledge"},
-    {"recipe_field": "Tools",          "platform_field": "(implicit in instructions)"}
+    {
+      "recipe_field": "Title",
+      "platform_field": "Project name"
+    },
+    {
+      "recipe_field": "Description",
+      "platform_field": "(no dedicated field; include in Custom instructions if needed)"
+    },
+    {
+      "recipe_field": "Instructions",
+      "platform_field": "Custom instructions"
+    },
+    {
+      "recipe_field": "Knowledge Base",
+      "platform_field": "Project knowledge (file uploads)"
+    },
+    {
+      "recipe_field": "Tools",
+      "platform_field": "(not applicable in standard Projects)"
+    }
   ],
-  "footer_note": null,
+  "footer_note": "Claude's Projects are most useful when faculty want a personal teaching workspace — a Project per course, with that course's materials uploaded, and your teaching instructions saved. For broad student-facing deployment, Copilot or ChatGPT often have cleaner sharing flows.",
   "last_updated": null
 }

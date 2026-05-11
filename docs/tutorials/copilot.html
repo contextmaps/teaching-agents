@@ -50,44 +50,39 @@
 
   <header class="recipe-header">
     <h1 class="recipe-header__title">Building agents in Microsoft Copilot</h1>
-    <p class="recipe-header__description">Microsoft Copilot Chat includes a built-in agent-creation flow that any VT faculty member can use with their institutional account. This tutorial covers the consumer-tier flow, not Copilot Studio. Expect a guided form, light-weight grounding, and a shareable link at the end.</p>
+    <p class="recipe-header__description">Microsoft Copilot&#39;s consumer-tier agent flow lets any VT faculty member create a custom agent using their institutional Microsoft account. This tutorial covers that consumer flow, not Copilot Studio (a separate, more advanced product for institutional deployments). Expect a guided form, light-weight knowledge grounding, and a shareable link at the end.</p>
   </header>
-
-  <div class="tutorial-banner" role="note">
-    Tutorial content under review — last updated dates pending.
-  </div>
-
-  <figure class="tutorial-anchor">
-    <img src="../assets/tutorials/copilot/entry-point.png"
-         alt="Placeholder for Copilot&#39;s agent creation entry point — to be replaced with a real screenshot."
-         loading="lazy"
-         width="800" height="500">
-  </figure>
 
   <div class="tutorial-steps">
     
       <section class="tutorial-step" aria-labelledby="step-1">
         <h2 class="tutorial-step__heading" id="step-1">
           <span class="tutorial-step__number" aria-hidden="true">1</span>
-          <span>Find the agent creation entry point</span>
+          <span>Find the agent-creation entry point</span>
         </h2>
-        <p class="tutorial-step__body">Sign in to Copilot at copilot.microsoft.com with your VT account. Look for the &#34;Create an agent&#34; or &#34;Agents&#34; entry on the left rail (the exact label has shifted over time; the icon is consistent). If you don&#39;t see it, check that you&#39;re in the chat experience, not Microsoft 365 Copilot search.</p>
+        <p class="tutorial-step__body">Sign in to Copilot at copilot.microsoft.com with your VT account. Look for &#34;Agents&#34; or &#34;Create an agent&#34; — typically in the left rail. The exact label and location shift with Microsoft&#39;s UI updates; if you can&#39;t find it, ask Copilot in the chat: &#34;How do I get to the page where I can create a custom agent?&#34; and follow the directions it gives.
+
+If you land in Microsoft 365 Copilot search instead of the chat experience, switch to the chat experience first — agent creation is part of the chat product.</p>
       </section>
     
       <section class="tutorial-step" aria-labelledby="step-2">
         <h2 class="tutorial-step__heading" id="step-2">
           <span class="tutorial-step__number" aria-hidden="true">2</span>
-          <span>Fill in the creation form</span>
+          <span>Fill in the configuration</span>
         </h2>
-        <p class="tutorial-step__body">Copilot will walk you through a guided form. Paste the recipe&#39;s Title into Name, Description into Description, Instructions into the Instructions / System message field. Knowledge sources go into the file upload section. Skip the Capabilities / Tools section unless your recipe specifies one. Save and preview as you go — Copilot lets you test the agent in a side panel before publishing.</p>
+        <p class="tutorial-step__body">Copilot walks you through a guided form. Open your chosen recipe in a separate tab and use the copy buttons to fill each field on the form. Use the mapping table below to know which recipe field goes where. Save and preview as you go — Copilot lets you test the agent in a side panel before publishing.
+
+Skip the Capabilities / Tools section unless your recipe specifies tools to enable. Most recipes in this catalog don&#39;t need them.</p>
       </section>
     
       <section class="tutorial-step" aria-labelledby="step-3">
         <h2 class="tutorial-step__heading" id="step-3">
           <span class="tutorial-step__number" aria-hidden="true">3</span>
-          <span>Save and share your agent</span>
+          <span>Save and share</span>
         </h2>
-        <p class="tutorial-step__body">Choose Publish, then pick the visibility level. &#34;Just me&#34; is the default; for a faculty-built agent you want to share with students, pick &#34;Shared with people I choose&#34; and add specific accounts or distribution lists. Copy the resulting link and paste it where students can find it (LMS, syllabus, course page).</p>
+        <p class="tutorial-step__body">Choose Publish, then pick the visibility level. &#34;Just me&#34; is the default; for a faculty-built agent you want students to use, choose &#34;Shared with people I choose&#34; and add specific accounts or distribution lists. Copy the resulting link and paste it where students can find it (LMS, syllabus, course page).
+
+If you can&#39;t find the visibility options or sharing controls, ask Copilot: &#34;How do I share my custom agent with specific people?&#34; — the platform knows its current sharing UI.</p>
       </section>
     
   </div>
@@ -115,7 +110,7 @@
         
           <tr>
             <td>Instructions</td>
-            <td>Instructions</td>
+            <td>Instructions / System message</td>
           </tr>
         
           <tr>

@@ -1,33 +1,46 @@
 {
   "platform_id": "notebooklm",
   "platform_label": "NotebookLM",
-  "intro_paragraph": "NotebookLM is not a peer to the four primary platforms in the agent-creation paradigm. It's a shareable grounded chat: upload sources, configure the chat behavior lightly, share a notebook link. Best for recipes where a faculty member wants to share grounded Q&A over uploaded materials without building a full agent. Two recipes in the catalog (Course FAQ Answerer and Reusable Course Assistant) reference NotebookLM as a lightweight alternative.",
-  "anchor_screenshot": "assets/tutorials/notebooklm/notebook-overview.png",
-  "anchor_screenshot_alt": "Placeholder for NotebookLM's notebook overview — to be replaced with a real screenshot.",
+  "intro_paragraph": "NotebookLM is structurally different from the four main platforms — it doesn't create an \"agent\" in the same sense. A notebook is a knowledge base you query: you add source materials (PDFs, docs, websites, audio), and NotebookLM grounds its responses in those sources. The \"agent\" behavior comes from how you ask questions and the sources you've uploaded, not from a configured system prompt. NotebookLM is included in this catalog as an alternative for recipes that are primarily knowledge-grounded (course FAQ answerers, reading-discussion agents, syllabus-based assistants).",
   "steps": [
     {
       "number": 1,
-      "title": "Create a notebook and add sources",
-      "body": "Sign in at notebooklm.google.com and click \"+ New notebook.\" Add sources from the left panel: PDFs, Google Docs, slides, or pasted text. NotebookLM grounds every answer in these sources, with citations back to specific passages. This is the recipe's Knowledge Base."
+      "title": "Create a new notebook",
+      "body": "Sign in to NotebookLM at notebooklm.google.com with your VT account. Click \"Create new\" or the \"+ New notebook\" button on the home page. Give the notebook a name reflecting your recipe — typically the recipe's Title and the course it's for (e.g., \"FIN 3104 Course FAQ\")."
     },
     {
       "number": 2,
-      "title": "Configure the chat behavior (lightly)",
-      "body": "Open notebook settings. NotebookLM does not expose a full system-prompt field the way Claude and ChatGPT do; what it offers is a shorter \"persona / tone\" hint and the ability to pin specific source documents as the primary grounding. Paste a condensed version of the recipe's Instructions into the persona field. Skip the Tools field — it's not applicable here."
+      "title": "Add sources",
+      "body": "NotebookLM's central feature is the sources panel. Upload the materials your recipe specifies in its Knowledge Base field — syllabus, schedule, readings, assignment descriptions, lecture slides. NotebookLM supports PDF, text files, Google Docs, web pages, and audio.\n\nEach source you add becomes part of what NotebookLM can answer from. Sources are the recipe's grounding; without them, NotebookLM has nothing course-specific to draw on.\n\nYou can add and remove sources at any time — NotebookLM re-indexes automatically."
     },
     {
       "number": 3,
-      "title": "Share the notebook",
-      "body": "Use the Share button at the top right. Pick \"Anyone with the link\" or restrict to specific accounts. Recipients land in the same notebook chat with the same grounding. NotebookLM share links work across Google accounts; recipients don't need a paid tier."
+      "title": "Use the notebook",
+      "body": "Once sources are uploaded, ask questions in the chat panel. NotebookLM grounds every response in your sources and cites which source each claim comes from. For faculty use, the recipe's Instructions field can serve as the first prompt — paste the Instructions text into the chat to set up the notebook's behavior for the session.\n\nFor student-facing deployment, share the notebook by clicking the share icon and adding student emails or a class group. Students get read-only access to the notebook and can ask their own questions.\n\nIf you can't find the share controls, ask NotebookLM: \"How do I share this notebook with my class?\" — the platform will direct you to the current sharing UI."
     }
   ],
   "field_mapping": [
-    {"recipe_field": "Title",          "platform_field": "Notebook name"},
-    {"recipe_field": "Description",    "platform_field": "Notebook description"},
-    {"recipe_field": "Instructions",   "platform_field": "Persona / tone (condensed)"},
-    {"recipe_field": "Knowledge Base", "platform_field": "Sources"},
-    {"recipe_field": "Tools",          "platform_field": "(not applicable)"}
+    {
+      "recipe_field": "Title",
+      "platform_field": "Notebook name"
+    },
+    {
+      "recipe_field": "Description",
+      "platform_field": "(use as the notebook's stated purpose; no dedicated field)"
+    },
+    {
+      "recipe_field": "Instructions",
+      "platform_field": "First prompt or pinned note (no dedicated system-prompt field)"
+    },
+    {
+      "recipe_field": "Knowledge Base",
+      "platform_field": "Sources (uploaded materials)"
+    },
+    {
+      "recipe_field": "Tools",
+      "platform_field": "(not applicable)"
+    }
   ],
-  "footer_note": "If you came here from a recipe page, return to that recipe and consider whether NotebookLM's lighter configuration ceiling is the right trade-off. For recipes where the Instructions field is doing heavy lifting (Concept Tutor, Adaptive Practice Partner), Claude or ChatGPT is a better fit. NotebookLM shines when the value is in the source material itself.",
+  "footer_note": "NotebookLM is best when the recipe is fundamentally about querying course materials (the recipe's Knowledge Base is large and central). For recipes that depend on behavioral instructions (roleplay, debate moderation, structured feedback), one of the four main platforms is a better fit.",
   "last_updated": null
 }

@@ -50,44 +50,41 @@
 
   <header class="recipe-header">
     <h1 class="recipe-header__title">Building agents in Google Gemini</h1>
-    <p class="recipe-header__description">Google Gemini&#39;s custom &#34;Gems&#34; let you ship a configured agent with optional file grounding and a long context window. Gems are useful when a recipe needs to hold an entire course&#39;s worth of materials in mind. Faculty access depends on whether your Google Workspace tier includes Gemini; sharing constraints are tighter than ChatGPT or Claude.</p>
+    <p class="recipe-header__description">Google Gemini calls custom agents &#34;Gems.&#34; Gem creation requires a paid Google Workspace account or Google AI Pro / Ultra subscription. Most VT faculty have access to Gemini through their VT Google Workspace account; check with VT IT if you&#39;re unsure. This tutorial covers the standard Gems creation flow.</p>
   </header>
-
-  <div class="tutorial-banner" role="note">
-    Tutorial content under review — last updated dates pending.
-  </div>
-
-  <figure class="tutorial-anchor">
-    <img src="../assets/tutorials/gemini/entry-point.png"
-         alt="Placeholder for Gemini&#39;s Gem builder entry point — to be replaced with a real screenshot."
-         loading="lazy"
-         width="800" height="500">
-  </figure>
 
   <div class="tutorial-steps">
     
       <section class="tutorial-step" aria-labelledby="step-1">
         <h2 class="tutorial-step__heading" id="step-1">
           <span class="tutorial-step__number" aria-hidden="true">1</span>
-          <span>Find the agent creation entry point</span>
+          <span>Find the Gem creation entry point</span>
         </h2>
-        <p class="tutorial-step__body">From gemini.google.com, open the left sidebar and look for &#34;Gem manager&#34; (the icon resembles a small diamond). Click it, then click &#34;+ New Gem.&#34; If you don&#39;t see the option, your account tier doesn&#39;t have Gems enabled — Google has been rolling this out unevenly across consumer and Workspace accounts.</p>
+        <p class="tutorial-step__body">Sign in to Gemini at gemini.google.com with your VT account. Look for &#34;Gems&#34; or &#34;Gem manager&#34; — typically accessible from the sidebar. From there, &#34;+ New Gem&#34; or &#34;Create Gem&#34; opens the builder. The exact location shifts with Google&#39;s UI updates; if you can&#39;t find it, ask Gemini: &#34;How do I create a new Gem?&#34; and follow the directions it gives.
+
+If you don&#39;t see Gems in your account, your VT Workspace tier may not include Gemini access — check with VT IT.</p>
       </section>
     
       <section class="tutorial-step" aria-labelledby="step-2">
         <h2 class="tutorial-step__heading" id="step-2">
           <span class="tutorial-step__number" aria-hidden="true">2</span>
-          <span>Fill in the creation form</span>
+          <span>Fill in the configuration</span>
         </h2>
-        <p class="tutorial-step__body">The Gem builder shows two key fields: a Name (the recipe&#39;s Title) and an Instructions text area (the recipe&#39;s Instructions). Paste each in. For Knowledge Base, attach files in the &#34;Knowledge&#34; section — Gemini&#39;s large context window means it can hold more than ChatGPT or Claude per upload, but sharing a Gem with attached files is more constrained than the other platforms. Test the Gem in the preview pane before saving.</p>
+        <p class="tutorial-step__body">Gemini&#39;s Gem builder has a structured form for Name, Description, and Instructions, plus a knowledge file upload area. Open your chosen recipe in a separate tab and use the copy buttons to fill each field. Use the mapping table below.
+
+Gemini handles long instructions well; paste the recipe&#39;s full Instructions text into the Instructions field. For Knowledge Base materials, upload the files specified in the recipe — Gemini supports PDFs, Docs, and several other formats.
+
+Gemini doesn&#39;t have a separate Tools or Capabilities section in standard Gems. Most recipes in this catalog don&#39;t need one.</p>
       </section>
     
       <section class="tutorial-step" aria-labelledby="step-3">
         <h2 class="tutorial-step__heading" id="step-3">
           <span class="tutorial-step__number" aria-hidden="true">3</span>
-          <span>Save and share your agent</span>
+          <span>Save and share</span>
         </h2>
-        <p class="tutorial-step__body">Save the Gem to your library. Sharing options vary by account tier; for some Workspace tiers, you can share within your domain (vt.edu); for consumer accounts, sharing may be limited to copying the configuration text rather than a live link. Confirm the share UI actually produces a working link before assuming the agent is shareable.</p>
+        <p class="tutorial-step__body">Save the Gem. Sharing in Gemini works through Google Workspace — share with specific email addresses or with a group. Pick the visibility that fits your use: a specific class roster, a department group, or a broader VT group depending on the recipe.
+
+If you can&#39;t find the sharing controls, ask Gemini: &#34;How do I share this Gem with specific people?&#34; — the platform will direct you to the current sharing UI.</p>
       </section>
     
   </div>
@@ -120,18 +117,20 @@
         
           <tr>
             <td>Knowledge Base</td>
-            <td>Knowledge</td>
+            <td>Knowledge / Files</td>
           </tr>
         
           <tr>
             <td>Tools</td>
-            <td>(not exposed in Gems)</td>
+            <td>(not applicable in standard Gems)</td>
           </tr>
         
       </tbody>
     </table>
   </section>
 
+  
+    <aside class="tutorial-footer-note">Gemini&#39;s Gem sharing is tied to Google Workspace permissions, which means VT-internal sharing works well but external sharing (e.g., students who don&#39;t have VT accounts) is more constrained. For courses with external participants, Copilot or ChatGPT may be cleaner.</aside>
   
 
   <p class="field__platform-note" style="margin-top:32px;">

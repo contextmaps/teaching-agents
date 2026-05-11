@@ -1,32 +1,45 @@
 {
   "platform_id": "chatgpt",
   "platform_label": "ChatGPT",
-  "intro_paragraph": "ChatGPT's custom GPTs are the most established consumer-tier agent platform. They support file grounding, configurable instructions, and shareable links that don't require the recipient to have a paid account. Builder access requires a ChatGPT Plus or Team subscription; sharing works for anyone with a free account.",
-  "anchor_screenshot": "assets/tutorials/chatgpt/entry-point.png",
-  "anchor_screenshot_alt": "Placeholder for ChatGPT's GPT builder entry point — to be replaced with a real screenshot.",
+  "intro_paragraph": "ChatGPT calls custom agents \"GPTs.\" Any user with a paid ChatGPT account (Plus, Team, Enterprise, or Edu) can create one. This tutorial covers the consumer GPT creation flow. Expect a conversational builder, file uploads for knowledge grounding, and a shareable link.",
   "steps": [
     {
       "number": 1,
-      "title": "Find the agent creation entry point",
-      "body": "From chat.openai.com, click your profile in the top-right corner and choose \"My GPTs,\" then \"Create a GPT.\" You can also reach the builder from the side panel on the left by selecting \"Explore GPTs\" → \"Create.\" The two routes land in the same configuration screen."
+      "title": "Find the GPT creation entry point",
+      "body": "Sign in to ChatGPT at chatgpt.com. Look for \"GPTs\" or \"Explore GPTs\" — usually in the left sidebar. From there, \"Create\" or \"+ Create GPT\" opens the builder. The exact location shifts with UI updates; if you can't find it, ask ChatGPT: \"How do I create a custom GPT?\" and follow the directions it gives.\n\nIf you're on the free plan, you'll be able to use GPTs but not create them — creation requires a paid plan."
     },
     {
       "number": 2,
-      "title": "Fill in the creation form",
-      "body": "Switch to the Configure tab — the Create tab is conversational and slower for paste-driven setup. Paste Title into Name, Description into Description, Instructions into Instructions. Upload files for Knowledge under \"Knowledge\" (PDFs, docs, slides). Toggle Capabilities (Web Search, Code Interpreter, DALL-E) as the recipe specifies; leave them off if not needed. Use the preview pane on the right to test the agent immediately."
+      "title": "Fill in the configuration",
+      "body": "ChatGPT's builder has two panes: a Create tab with conversational prompts (\"What should this GPT do?\") and a Configure tab with a structured form. Use the Configure tab — it maps directly to recipe fields.\n\nOpen your chosen recipe in a separate tab and use the copy buttons to fill each field on the form. Use the mapping table below to know which recipe field goes where. Test in the side preview as you go.\n\nIf your recipe's Instructions are long, paste them into the Instructions field anyway — ChatGPT's Configure tab handles longer system prompts well. Leave Capabilities (web browsing, code interpreter, image generation) at their defaults unless your recipe specifies otherwise."
     },
     {
       "number": 3,
-      "title": "Save and share your agent",
-      "body": "Click Save. Pick \"Anyone with the link\" for general sharing or \"Only me\" while you're still calibrating. The published GPT lives at a chat.openai.com/g/... URL; copy that link into your syllabus or LMS. Students don't need a paid account to use a shared GPT, but they do need a free OpenAI account."
+      "title": "Save and share",
+      "body": "Click Create or Save in the top right. Pick a visibility setting: \"Only me,\" \"Anyone with a link,\" or \"GPT Store.\" For faculty sharing with students, \"Anyone with a link\" is usually right — copy the link and distribute it through your LMS or syllabus.\n\nIf you don't see the sharing options or visibility controls, ask ChatGPT: \"How do I share my GPT with specific people?\" — the platform will direct you to the current UI."
     }
   ],
   "field_mapping": [
-    {"recipe_field": "Title",          "platform_field": "Name"},
-    {"recipe_field": "Description",    "platform_field": "Description"},
-    {"recipe_field": "Instructions",   "platform_field": "Instructions"},
-    {"recipe_field": "Knowledge Base", "platform_field": "Knowledge"},
-    {"recipe_field": "Tools",          "platform_field": "Capabilities"}
+    {
+      "recipe_field": "Title",
+      "platform_field": "Name"
+    },
+    {
+      "recipe_field": "Description",
+      "platform_field": "Description"
+    },
+    {
+      "recipe_field": "Instructions",
+      "platform_field": "Instructions"
+    },
+    {
+      "recipe_field": "Knowledge Base",
+      "platform_field": "Knowledge (file uploads)"
+    },
+    {
+      "recipe_field": "Tools",
+      "platform_field": "Capabilities (web browsing, code interpreter, etc.)"
+    }
   ],
   "footer_note": null,
   "last_updated": null

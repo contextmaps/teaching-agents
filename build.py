@@ -68,7 +68,6 @@ ALLOWED_CONTENT_STATUS = {"draft", "final"}
 
 REQUIRED_TUTORIAL_KEYS = {
     "platform_id", "platform_label", "intro_paragraph",
-    "anchor_screenshot", "anchor_screenshot_alt",
     "steps", "field_mapping", "footer_note", "last_updated",
 }
 

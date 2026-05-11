@@ -50,44 +50,41 @@
 
   <header class="recipe-header">
     <h1 class="recipe-header__title">Building agents in ChatGPT</h1>
-    <p class="recipe-header__description">ChatGPT&#39;s custom GPTs are the most established consumer-tier agent platform. They support file grounding, configurable instructions, and shareable links that don&#39;t require the recipient to have a paid account. Builder access requires a ChatGPT Plus or Team subscription; sharing works for anyone with a free account.</p>
+    <p class="recipe-header__description">ChatGPT calls custom agents &#34;GPTs.&#34; Any user with a paid ChatGPT account (Plus, Team, Enterprise, or Edu) can create one. This tutorial covers the consumer GPT creation flow. Expect a conversational builder, file uploads for knowledge grounding, and a shareable link.</p>
   </header>
-
-  <div class="tutorial-banner" role="note">
-    Tutorial content under review — last updated dates pending.
-  </div>
-
-  <figure class="tutorial-anchor">
-    <img src="../assets/tutorials/chatgpt/entry-point.png"
-         alt="Placeholder for ChatGPT&#39;s GPT builder entry point — to be replaced with a real screenshot."
-         loading="lazy"
-         width="800" height="500">
-  </figure>
 
   <div class="tutorial-steps">
     
       <section class="tutorial-step" aria-labelledby="step-1">
         <h2 class="tutorial-step__heading" id="step-1">
           <span class="tutorial-step__number" aria-hidden="true">1</span>
-          <span>Find the agent creation entry point</span>
+          <span>Find the GPT creation entry point</span>
         </h2>
-        <p class="tutorial-step__body">From chat.openai.com, click your profile in the top-right corner and choose &#34;My GPTs,&#34; then &#34;Create a GPT.&#34; You can also reach the builder from the side panel on the left by selecting &#34;Explore GPTs&#34; → &#34;Create.&#34; The two routes land in the same configuration screen.</p>
+        <p class="tutorial-step__body">Sign in to ChatGPT at chatgpt.com. Look for &#34;GPTs&#34; or &#34;Explore GPTs&#34; — usually in the left sidebar. From there, &#34;Create&#34; or &#34;+ Create GPT&#34; opens the builder. The exact location shifts with UI updates; if you can&#39;t find it, ask ChatGPT: &#34;How do I create a custom GPT?&#34; and follow the directions it gives.
+
+If you&#39;re on the free plan, you&#39;ll be able to use GPTs but not create them — creation requires a paid plan.</p>
       </section>
     
       <section class="tutorial-step" aria-labelledby="step-2">
         <h2 class="tutorial-step__heading" id="step-2">
           <span class="tutorial-step__number" aria-hidden="true">2</span>
-          <span>Fill in the creation form</span>
+          <span>Fill in the configuration</span>
         </h2>
-        <p class="tutorial-step__body">Switch to the Configure tab — the Create tab is conversational and slower for paste-driven setup. Paste Title into Name, Description into Description, Instructions into Instructions. Upload files for Knowledge under &#34;Knowledge&#34; (PDFs, docs, slides). Toggle Capabilities (Web Search, Code Interpreter, DALL-E) as the recipe specifies; leave them off if not needed. Use the preview pane on the right to test the agent immediately.</p>
+        <p class="tutorial-step__body">ChatGPT&#39;s builder has two panes: a Create tab with conversational prompts (&#34;What should this GPT do?&#34;) and a Configure tab with a structured form. Use the Configure tab — it maps directly to recipe fields.
+
+Open your chosen recipe in a separate tab and use the copy buttons to fill each field on the form. Use the mapping table below to know which recipe field goes where. Test in the side preview as you go.
+
+If your recipe&#39;s Instructions are long, paste them into the Instructions field anyway — ChatGPT&#39;s Configure tab handles longer system prompts well. Leave Capabilities (web browsing, code interpreter, image generation) at their defaults unless your recipe specifies otherwise.</p>
       </section>
     
       <section class="tutorial-step" aria-labelledby="step-3">
         <h2 class="tutorial-step__heading" id="step-3">
           <span class="tutorial-step__number" aria-hidden="true">3</span>
-          <span>Save and share your agent</span>
+          <span>Save and share</span>
         </h2>
-        <p class="tutorial-step__body">Click Save. Pick &#34;Anyone with the link&#34; for general sharing or &#34;Only me&#34; while you&#39;re still calibrating. The published GPT lives at a chat.openai.com/g/... URL; copy that link into your syllabus or LMS. Students don&#39;t need a paid account to use a shared GPT, but they do need a free OpenAI account.</p>
+        <p class="tutorial-step__body">Click Create or Save in the top right. Pick a visibility setting: &#34;Only me,&#34; &#34;Anyone with a link,&#34; or &#34;GPT Store.&#34; For faculty sharing with students, &#34;Anyone with a link&#34; is usually right — copy the link and distribute it through your LMS or syllabus.
+
+If you don&#39;t see the sharing options or visibility controls, ask ChatGPT: &#34;How do I share my GPT with specific people?&#34; — the platform will direct you to the current UI.</p>
       </section>
     
   </div>
@@ -120,12 +117,12 @@
         
           <tr>
             <td>Knowledge Base</td>
-            <td>Knowledge</td>
+            <td>Knowledge (file uploads)</td>
           </tr>
         
           <tr>
             <td>Tools</td>
-            <td>Capabilities</td>
+            <td>Capabilities (web browsing, code interpreter, etc.)</td>
           </tr>
         
       </tbody>
