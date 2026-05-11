@@ -1,5 +1,5 @@
 {
-  "site_intro": "23 agent designs for Pamplin faculty, derived from what came up at the May 7 AI Teaching Workshop. Pick a recipe, copy the fields into your platform of choice, build the agent in 15-90 minutes.",
+  "site_intro": "A working collection of AI teaching agent recipes for Pamplin faculty. Each recipe is a starting point for an agent you can build in any major platform — Microsoft Copilot, ChatGPT, Claude, or Gemini. Browse by family, pick a recipe that fits, copy the fields into your platform, and you're running.",
   "tutorial_section_intro": "New to building agents? Start here.",
   "family_descriptions": {
     "in_class_activity_engines": "Agents that drive the dynamic things that happen in class — roleplays, debates, group exercises, structured activities.",
@@ -10,5 +10,5 @@
     "examples_cases_content":    "Agents that generate teaching content — examples, cases, multi-perspective explanations.",
     "ai_policy":                 "Agents that help you draft AI-use policy for your course."
   },
-  "about_page_stub": "[Placeholder About content — final copy authored in a later handoff. The site is a follow-up to the May 7, 2026 Pamplin AI Teaching Workshop, which surfaced unprompted faculty interest in building their own agents. The 23 recipes in v1 are derived from the actual selections and free-text submissions of 98 workshop participants. Final About copy will name contributors, link the workshop platform, and describe the calibration process behind each recipe.]"
+  "about_page_stub": "This is a working collection of AI teaching agent recipes for faculty at Virginia Tech's Pamplin College of Business. Each recipe is a starting point: copy the fields into your preferred AI platform, build the agent, customize the parts that need to fit your course.\n\nPlease contact Onur Seref (<a href=\"mailto:seref@vt.edu\">seref@vt.edu</a>) for questions, concerns, or suggestions."
 }

@@ -13,12 +13,9 @@
     <h1 class="recipe-header__title">About this site</h1>
   </header>
 
-  <div class="tutorial-banner" role="note">
-    Final About copy is pending; the text below is a placeholder stub.
-  </div>
-
   <div class="about-content">
-    <p>{{ site_content.about_page_stub }}</p>
-    <p>For design questions, contact Onur Seref (Pamplin BIT). For institutional and IT questions — including Copilot Studio access for faculty deploying at the institutional tier — contact Jim Dickhans (Pamplin IT).</p>
+    {% for paragraph in site_content.about_page_stub.split('\n\n') %}
+    <p>{{ paragraph|safe }}</p>
+    {% endfor %}
   </div>
 {% endblock %}
